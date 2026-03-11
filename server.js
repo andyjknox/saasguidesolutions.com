@@ -5,7 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public')); // Put your index.html in a /public folder
+app.use(express.static(__dirname)); 
 
 app.post('/submit-audit', (req, res) => {
     const { name, email, company, pain_point } = req.body;
