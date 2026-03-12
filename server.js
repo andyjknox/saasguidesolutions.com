@@ -12,17 +12,19 @@ app.use(express.static(__dirname));
 app.post('/submit-audit', async (req, res) => {
     const { name, email, company, bottleneck } = req.body;
 
-    try {
-        const data = await resend.emails.send({
-            from: 'onboarding@resend.dev', // We can update this to your domain later
+const data = await resend.emails.send({
+            // CHANGE THIS: Use your actual verified domain email
+            from: 'GTM Audit <andy@saasguidesolutions.com>', 
             to: 'andyknox@saasguidesolutions.com',
             subject: `New GTM Audit Request: ${company}`,
             html: `
-                <h2>New Lead Received</h2>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Company:</strong> ${company}</p>
-                <p><strong>Bottleneck:</strong> ${bottleneck}</p>
+                <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+                    <h2 style="color: #333;">New Lead Received</h2>
+                    <p><strong>Name:</strong> ${name}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Company:</strong> ${company}</p>
+                    <p><strong>Bottleneck:</strong> ${bottleneck}</p>
+                </div>
             `
         });
 
