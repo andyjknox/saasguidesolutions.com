@@ -2,17 +2,19 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const path = require('path');
 const app = express();
+
+// Use 8080 as discussed since your Railway URL preferred it
 const PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
-// Email Configuration
+// Email Configuration pulling from Railway Variables
 const transporter = nodemailer.createTransport({
-    service: 'gmail', // or your email provider
+    service: 'gmail',
     auth: {
-        user: 'andyknox@saasguidesolutions.com',
-        pass: 'tzkncvwqnmicefkj' // Set this in Railway Variables
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
     }
 });
 
@@ -20,7 +22,7 @@ app.post('/submit-audit', (req, res) => {
     const { name, email, company, bottleneck } = req.body;
 
     const mailOptions = {
-        from: 'andyknox@saasguidesolutions.com',
+        from: process.env.EMAIL_USER,
         to: 'andyknox@saasguidesolutions.com',
         subject: `New GTM Audit Request: ${company}`,
         text: `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nBottleneck: ${bottleneck}`
@@ -28,11 +30,17 @@ app.post('/submit-audit', (req, res) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            console.log(error);
-            res.status(500).send('Error sending email');
+            console.error('Email Error:', error);
+            res.status(500).send('Something went wrong. Please email Andy directly at andyknox@saasguidesolutions.com');
         } else {
-            // Redirect to a success page or send a message
-            res.send('<h1>Submission Successful</h1><p>Andy will contact you shortly.</p><a href="/">Back to Home</a>');
+            // High-value redirect to your bio page/success message
+            res.send(`
+                <div style="font-family: sans-serif; text-align: center; padding: 50px;">
+                    <h1>Audit Request Received!</h1>
+                    <p>Thanks, ${name}. I'll review ${company}'s bottleneck and get back to you.</p>
+                    <a href="/" style="color: blue;">Return to Home</a>
+                </div>
+            `);
         }
     });
 });
