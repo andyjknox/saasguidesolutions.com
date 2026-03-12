@@ -1,26 +1,40 @@
 const express = require('express');
-const fs = require('fs');
+const nodemailer = require('nodemailer');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname)); 
+app.use(express.static(__dirname));
+
+// Email Configuration
+const transporter = nodemailer.createTransport({
+    service: 'gmail', // or your email provider
+    auth: {
+        user: 'andyknox@saasguidesolutions.com',
+        pass: 'tzkncvwqnmicefkj' // Set this in Railway Variables
+    }
+});
 
 app.post('/submit-audit', (req, res) => {
-    // These names now match the "name" attributes in your index.html
     const { name, email, company, bottleneck } = req.body;
-    
-    const data = `${new Date().toISOString()} | ${name} | ${email} | ${company} | ${bottleneck}\n`;
-    
-    try {
-        // Appends to leads.txt in the root
-        fs.appendFileSync('leads.txt', data);
-        res.send('Audit request received. We will contact you shortly.');
-    } catch (err) {
-        console.error('Error writing to file', err);
-        res.status(500).send('Internal Server Error');
-    }
+
+    const mailOptions = {
+        from: 'andyknox@saasguidesolutions.com',
+        to: 'andyknox@saasguidesolutions.com',
+        subject: `New GTM Audit Request: ${company}`,
+        text: `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nBottleneck: ${bottleneck}`
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+            res.status(500).send('Error sending email');
+        } else {
+            // Redirect to a success page or send a message
+            res.send('<h1>Submission Successful</h1><p>Andy will contact you shortly.</p><a href="/">Back to Home</a>');
+        }
+    });
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
