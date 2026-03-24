@@ -16,16 +16,34 @@
 </head>
 <body class="bg-white text-slate-900 font-sans leading-tight">
 
-    <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto">
-        <a href="/" class="flex flex-col items-center no-underline group">
+    <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto relative z-50">
+        <a href="/" class="flex flex-col items-center no-underline">
             <img src="https://www.saasguidesolutions.com/logo.png"
                  alt="SaaS Guide Solutions"
                  class="h-24 w-auto antialiased"
                  style="image-rendering: -webkit-optimize-contrast; background-color: #f8fafc; mix-blend-mode: multiply;">
         </a>
         <div class="flex items-center gap-6">
-            <a href="/services.html" class="font-medium text-slate-700 hover:text-blue-600 transition">Services</a>
-            <a href="/solutions.html" class="font-medium text-blue-600">Solutions</a>
+            <div class="relative group">
+                <a href="/services.html" class="font-medium text-slate-700 hover:text-blue-600 transition inline-flex items-center gap-1 py-2">Services <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></a>
+                <div class="absolute left-0 top-full pt-2 hidden group-hover:block">
+                    <div class="bg-white border border-slate-200 rounded-lg shadow-lg py-2 w-56">
+                        <a href="/services.html#core-services" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Core Services</a>
+                        <a href="/services.html#industries" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Industries Served</a>
+                        <a href="/services.html#engagement-models" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Engagement Models</a>
+                        <a href="/services.html#tech-stack" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Tech Stack Expertise</a>
+                    </div>
+                </div>
+            </div>
+            <div class="relative group">
+                <a href="/solutions.html" class="font-medium text-blue-600 inline-flex items-center gap-1 py-2">Solutions <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></a>
+                <div class="absolute left-0 top-full pt-2 hidden group-hover:block">
+                    <div class="bg-white border border-slate-200 rounded-lg shadow-lg py-2 w-56">
+                        <a href="/speedysheets.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">SpeedySheets</a>
+                        <a href="/whistler-intel.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Whistler Intel</a>
+                    </div>
+                </div>
+            </div>
             <a href="/#audit" class="bg-blue-600 text-white px-5 py-2 rounded-md font-medium hover:bg-blue-700 transition">Get Audit</a>
         </div>
     </nav>
@@ -40,276 +58,35 @@
         </p>
     </section>
 
-    <!-- ======================== SPEEDY SHEETS ======================== -->
+    <!-- Product Cards -->
     <section class="bg-slate-50 border-y border-slate-200 py-20">
-        <div class="max-w-5xl mx-auto px-6">
+        <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-2 gap-8">
 
-            <!-- Product Header -->
-            <div class="text-center mb-16">
+            <!-- SpeedySheets Card -->
+            <a href="/speedysheets.html" class="bg-white p-8 rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 transition block no-underline">
                 <span class="inline-block bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-4">Ready for Testing</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">SpeedySheets</h2>
-                <p class="text-xl text-slate-600 max-w-2xl mx-auto">Stop guessing your hours. Start getting paid for them.</p>
-            </div>
-
-            <!-- The Problem -->
-            <div class="max-w-3xl mx-auto mb-16">
-                <h3 class="text-sm font-bold uppercase tracking-wide text-red-500 mb-3">The Problem</h3>
-                <h4 class="text-2xl font-bold mb-6">The Administrative Drag</h4>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white p-6 rounded-lg border border-slate-200">
-                        <p class="text-slate-600 text-sm">Contractors lose unbilled hours to micro-tasks and forgotten timers.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg border border-slate-200">
-                        <p class="text-slate-600 text-sm">Manual tracking breaks concentration and workflow.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg border border-slate-200">
-                        <p class="text-slate-600 text-sm">Delayed timesheets equal delayed invoicing and poor cash flow.</p>
-                    </div>
+                <h2 class="text-2xl font-extrabold mb-3 text-slate-900">SpeedySheets</h2>
+                <p class="text-slate-600 text-sm mb-4">Contractor software that automatically generates billable invoices based on user activity. Pulls browser &amp; calendar history, tracks desktop activity, and reduces 3-hour timesheets to under 5 minutes.</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="bg-slate-100 text-xs px-2 py-1 rounded">Auto-Invoicing</span>
+                    <span class="bg-slate-100 text-xs px-2 py-1 rounded">5 Data Sources</span>
+                    <span class="bg-slate-100 text-xs px-2 py-1 rounded">Chrome Extension</span>
                 </div>
-            </div>
+                <span class="text-blue-600 font-semibold text-sm">Learn More &amp; Get Free Trial &rarr;</span>
+            </a>
 
-            <!-- The Solution -->
-            <div class="max-w-3xl mx-auto mb-16">
-                <h3 class="text-sm font-bold uppercase tracking-wide text-blue-600 mb-3">The Solution</h3>
-                <h4 class="text-2xl font-bold mb-6">Omni-Channel Passive Capture</h4>
-                <div class="bg-white p-8 rounded-lg border border-slate-200 mb-6">
-                    <ul class="space-y-4 text-slate-600">
-                        <li class="flex items-start gap-3">
-                            <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                            Tracks work automatically in the background
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                            Captures time across 5 distinct data sources: <strong>Manual, Calendar, Browser, Desktop, and Recurring</strong>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                            Creates audit-ready granularity with exact page titles and document names
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- The Magic -->
-            <div class="max-w-3xl mx-auto mb-16">
-                <h3 class="text-sm font-bold uppercase tracking-wide text-purple-600 mb-3">The Magic</h3>
-                <h4 class="text-2xl font-bold mb-6">Bridging the Web and Desktop Gap</h4>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white p-6 rounded-lg border border-slate-200">
-                        <h5 class="font-bold text-sm mb-2">Browser-Sync</h5>
-                        <p class="text-slate-600 text-sm">Dedicated Chrome Extension syncs web sessions to client billing codes.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg border border-slate-200">
-                        <h5 class="font-bold text-sm mb-2">Desktop Tracker</h5>
-                        <p class="text-slate-600 text-sm">Automatically pulls in local file names (like MS Word documents) for off-browser work.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg border border-slate-200">
-                        <h5 class="font-bold text-sm mb-2">Auto-Invoicing</h5>
-                        <p class="text-slate-600 text-sm">Instantly translates collated sessions into ready-to-send invoices.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- The ROI -->
-            <div class="max-w-3xl mx-auto mb-12">
-                <h3 class="text-sm font-bold uppercase tracking-wide text-green-600 mb-3">The ROI</h3>
-                <h4 class="text-2xl font-bold mb-6">97% Reduction in Administrative Time</h4>
-                <div class="grid sm:grid-cols-3 gap-6 text-center mb-8">
-                    <div class="bg-white p-6 rounded-lg border border-slate-200">
-                        <p class="text-3xl font-extrabold text-blue-600">3 hrs</p>
-                        <p class="text-xs text-slate-500 mt-1 uppercase tracking-wide">reduced to under 5 min</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg border border-slate-200">
-                        <p class="text-3xl font-extrabold text-blue-600">76 hrs</p>
-                        <p class="text-xs text-slate-500 mt-1 uppercase tracking-wide">admin time saved annually</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg border border-slate-200">
-                        <p class="text-3xl font-extrabold text-blue-600">10 min</p>
-                        <p class="text-xs text-slate-500 mt-1 uppercase tracking-wide">micro-tasks now captured</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Key Features -->
-            <div class="max-w-3xl mx-auto mb-12">
-                <h4 class="text-lg font-bold mb-4">Additional Features</h4>
-                <div class="flex flex-wrap gap-3">
-                    <span class="bg-white border border-slate-200 text-sm px-4 py-2 rounded-full">Recurring Tasks</span>
-                    <span class="bg-white border border-slate-200 text-sm px-4 py-2 rounded-full">Manual &amp; Copy Entries</span>
-                    <span class="bg-white border border-slate-200 text-sm px-4 py-2 rounded-full">Customizable Fields</span>
-                    <span class="bg-white border border-slate-200 text-sm px-4 py-2 rounded-full">Browser History Import</span>
-                    <span class="bg-white border border-slate-200 text-sm px-4 py-2 rounded-full">Calendar Sync</span>
-                    <span class="bg-white border border-slate-200 text-sm px-4 py-2 rounded-full">Activity Tracking</span>
-                    <span class="bg-white border border-slate-200 text-sm px-4 py-2 rounded-full">Billable Invoice Generation</span>
-                </div>
-            </div>
-
-            <!-- Free Trial Form -->
-            <div id="speedysheets-trial" class="max-w-xl mx-auto">
-                <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-200">
-                    <h3 class="text-2xl font-bold mb-2 text-center">Request Your Free Trial</h3>
-                    <p class="text-slate-500 text-sm text-center mb-6">Get a free licence and start testing SpeedySheets today.</p>
-                    <form id="speedySheetsForm" action="/submit-speedysheets" method="POST" class="space-y-4" novalidate>
-                        <div style="position:absolute;left:-9999px;" aria-hidden="true">
-                            <label>Leave this empty</label>
-                            <input type="text" name="website_url" tabindex="-1" autocomplete="off">
-                        </div>
-                        <input type="hidden" name="_formRenderedAt" id="ssFormRenderedAt">
-                        <div>
-                            <label class="block text-sm font-medium mb-1">Name</label>
-                            <input type="text" name="name" required class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-600 outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1">Work Email</label>
-                            <input type="email" name="email" id="ssEmailInput" required class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-600 outline-none">
-                            <p id="ssEmailError" class="text-red-600 text-sm mt-1 hidden"></p>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1">Are you a contractor?</label>
-                            <select name="is_contractor" required class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-600 outline-none bg-white">
-                                <option value="">Select one</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No, but I manage contractors">No, but I manage contractors</option>
-                                <option value="No, interested for my team">No, interested for my team</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1">What industry are you in?</label>
-                            <input type="text" name="industry" required placeholder="e.g. IT Consulting, Construction, Marketing" class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-600 outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1">How much do you hate timesheets? (1-10)</label>
-                            <input type="range" name="hates_timesheets" min="1" max="10" value="8" class="w-full accent-blue-600" id="ssHateRange">
-                            <div class="flex justify-between text-xs text-slate-400 mt-1">
-                                <span>1 - They're fine</span>
-                                <span id="ssHateValue" class="font-bold text-blue-600">8</span>
-                                <span>10 - With a passion</span>
-                            </div>
-                        </div>
-                        <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 rounded hover:bg-green-700 transition">Start Free Trial</button>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ======================== WHISTLER INTEL ======================== -->
-    <section class="py-20">
-        <div class="max-w-5xl mx-auto px-6">
-
-            <!-- Product Header -->
-            <div class="text-center mb-16">
+            <!-- Whistler Intel Card -->
+            <a href="/whistler-intel.html" class="bg-white p-8 rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 transition block no-underline">
                 <span class="inline-block bg-amber-100 text-amber-700 text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-4">In Development</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">Whistler Intel</h2>
-                <p class="text-xl text-slate-600 max-w-2xl mx-auto">Maximize your ski and ride time. Every run, every day.</p>
-            </div>
-
-            <!-- The Problem -->
-            <div class="max-w-3xl mx-auto mb-16">
-                <h3 class="text-sm font-bold uppercase tracking-wide text-red-500 mb-3">The Problem</h3>
-                <h4 class="text-2xl font-bold mb-6">Lost Time in Lift Lines</h4>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-                        <p class="text-slate-600 text-sm">Large resorts mean long, unpredictable lift lines that eat into ride time.</p>
-                    </div>
-                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-                        <p class="text-slate-600 text-sm">No reliable real-time data on which lifts are congested vs. which are clear.</p>
-                    </div>
-                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-                        <p class="text-slate-600 text-sm">Skiers and riders waste valuable mountain time guessing where to go next.</p>
-                    </div>
+                <h2 class="text-2xl font-extrabold mb-3 text-slate-900">Whistler Intel</h2>
+                <p class="text-slate-600 text-sm mb-4">AI-powered ski resort routing that maximizes your ride time. Uses computer vision to count crowds, crowdsourced confirmations, and personalized routing based on skill level and terrain preferences.</p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="bg-slate-100 text-xs px-2 py-1 rounded">AI Crowd Counting</span>
+                    <span class="bg-slate-100 text-xs px-2 py-1 rounded">Smart Routing</span>
+                    <span class="bg-slate-100 text-xs px-2 py-1 rounded">Crowdsourced</span>
                 </div>
-            </div>
-
-            <!-- The Solution -->
-            <div class="max-w-3xl mx-auto mb-16">
-                <h3 class="text-sm font-bold uppercase tracking-wide text-blue-600 mb-3">The Solution</h3>
-                <h4 class="text-2xl font-bold mb-6">AI-Powered Real-Time Routing</h4>
-                <div class="bg-slate-50 p-8 rounded-lg border border-slate-200">
-                    <ul class="space-y-4 text-slate-600">
-                        <li class="flex items-start gap-3">
-                            <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                            Routes you to the <strong>least busy, nearest lift</strong> in real time
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                            <strong>AI crowd counting</strong> verifies lift line congestion using visual data
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                            <strong>Crowdsourced confirmations</strong> from other users on the mountain
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                            Factors in <strong>user skill level</strong> and <strong>terrain preferences</strong> for personalized recommendations
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- How It Works -->
-            <div class="max-w-3xl mx-auto mb-16">
-                <h3 class="text-sm font-bold uppercase tracking-wide text-purple-600 mb-3">How It Works</h3>
-                <h4 class="text-2xl font-bold mb-6">Multi-Source Intelligence</h4>
-                <div class="grid sm:grid-cols-2 gap-6">
-                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-                        <h5 class="font-bold text-sm mb-2">AI Vision</h5>
-                        <p class="text-slate-600 text-sm">Computer vision counts crowds at lift bases and across slopes for accurate real-time data.</p>
-                    </div>
-                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-                        <h5 class="font-bold text-sm mb-2">Crowd Sourcing</h5>
-                        <p class="text-slate-600 text-sm">Users confirm and report live conditions, creating a community-verified data layer.</p>
-                    </div>
-                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-                        <h5 class="font-bold text-sm mb-2">Smart Routing</h5>
-                        <p class="text-slate-600 text-sm">Algorithm combines proximity, wait time, skill level, and terrain type to recommend your next lift.</p>
-                    </div>
-                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
-                        <h5 class="font-bold text-sm mb-2">Personalization</h5>
-                        <p class="text-slate-600 text-sm">Set your skill level and terrain preferences to get routes matched to how you ride.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Get in Touch Form -->
-            <div id="whistler-intel" class="max-w-xl mx-auto">
-                <div class="bg-slate-50 p-8 rounded-lg shadow-sm border border-slate-200">
-                    <h3 class="text-2xl font-bold mb-2 text-center">Get Involved</h3>
-                    <p class="text-slate-500 text-sm text-center mb-6">Interested in Whistler Intel? We're looking for partners, testers, and early adopters.</p>
-                    <form id="whistlerForm" action="/submit-whistler" method="POST" class="space-y-4" novalidate>
-                        <div style="position:absolute;left:-9999px;" aria-hidden="true">
-                            <label>Leave this empty</label>
-                            <input type="text" name="website_url" tabindex="-1" autocomplete="off">
-                        </div>
-                        <input type="hidden" name="_formRenderedAt" id="wiFormRenderedAt">
-                        <div>
-                            <label class="block text-sm font-medium mb-1">Name</label>
-                            <input type="text" name="name" required class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-600 outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1">Email</label>
-                            <input type="email" name="email" required class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-600 outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1">I'm interested as a...</label>
-                            <select name="interest_type" required class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-600 outline-none bg-white">
-                                <option value="">Select one</option>
-                                <option value="Partner / Investor">Partner / Investor</option>
-                                <option value="Beta Tester">Beta Tester</option>
-                                <option value="Resort / Ski Area Operator">Resort / Ski Area Operator</option>
-                                <option value="Technology Partner">Technology Partner</option>
-                                <option value="Just Curious">Just Curious</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-1">Message (optional)</label>
-                            <textarea name="message" rows="3" placeholder="Tell us about your interest or how you'd like to be involved..." class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-600 outline-none"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-slate-900 text-white font-bold py-3 rounded hover:bg-slate-800 transition">Submit Interest</button>
-                    </form>
-                </div>
-            </div>
+                <span class="text-blue-600 font-semibold text-sm">Learn More &amp; Get Involved &rarr;</span>
+            </a>
 
         </div>
     </section>
@@ -335,60 +112,6 @@
     <footer class="py-10 text-center text-slate-400 text-sm">
         &copy; 2026 SaaS Guide Solutions. All rights reserved.
     </footer>
-
-    <script>
-        // Timestamps for bot detection
-        document.getElementById('ssFormRenderedAt').value = Date.now().toString();
-        document.getElementById('wiFormRenderedAt').value = Date.now().toString();
-
-        // Hate slider value display
-        const ssHateRange = document.getElementById('ssHateRange');
-        const ssHateValue = document.getElementById('ssHateValue');
-        ssHateRange.addEventListener('input', function() {
-            ssHateValue.textContent = this.value;
-        });
-
-        // SpeedySheets work email validation
-        const blockedDomains = [
-            'gmail.com','googlemail.com','yahoo.com','yahoo.co.uk','yahoo.ca',
-            'hotmail.com','hotmail.co.uk','outlook.com','live.com','msn.com',
-            'aol.com','icloud.com','me.com','mac.com','mail.com','protonmail.com',
-            'proton.me','zoho.com','yandex.com','gmx.com','gmx.net',
-            'fastmail.com','tutanota.com','hey.com','inbox.com','rediffmail.com',
-            'qq.com','163.com','126.com','sina.com','comcast.net','verizon.net',
-            'att.net','sbcglobal.net','bellsouth.net','cox.net','charter.net',
-            'earthlink.net','optonline.net','rocketmail.com','ymail.com'
-        ];
-
-        const ssEmailInput = document.getElementById('ssEmailInput');
-        const ssEmailError = document.getElementById('ssEmailError');
-
-        ssEmailInput.addEventListener('blur', function() {
-            validateSSEmail();
-        });
-
-        function validateSSEmail() {
-            const email = ssEmailInput.value.trim().toLowerCase();
-            ssEmailError.classList.add('hidden');
-            ssEmailError.textContent = '';
-            if (!email) return true;
-            const domain = email.split('@')[1];
-            if (!domain) return true;
-            if (blockedDomains.includes(domain)) {
-                ssEmailError.textContent = 'Please use your work email address. Personal email addresses (Gmail, Hotmail, etc.) are not accepted.';
-                ssEmailError.classList.remove('hidden');
-                return false;
-            }
-            return true;
-        }
-
-        document.getElementById('speedySheetsForm').addEventListener('submit', function(e) {
-            if (!validateSSEmail()) {
-                e.preventDefault();
-                ssEmailInput.focus();
-            }
-        });
-    </script>
 
 </body>
 </html>
