@@ -52,14 +52,22 @@
     <section id="audit" class="max-w-xl mx-auto py-20 px-6">
         <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-200">
             <h2 class="text-2xl font-bold mb-6">Request Your GTM Audit</h2>
-            <form action="/submit-audit" method="POST" class="space-y-4">
+            <form id="auditForm" action="/submit-audit" method="POST" class="space-y-4" novalidate>
+                <!-- Honeypot field - hidden from humans, bots will fill it -->
+                <div style="position:absolute;left:-9999px;" aria-hidden="true">
+                    <label>Leave this empty</label>
+                    <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+                </div>
+                <!-- Timestamp to detect instant bot submissions -->
+                <input type="hidden" name="_formRenderedAt" id="formRenderedAt">
                 <div>
                     <label class="block text-sm font-medium mb-1">Name</label>
                     <input type="text" name="name" required class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-600 outline-none">
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">Work Email</label>
-                    <input type="email" name="email" required class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-600 outline-none">
+                    <input type="email" name="email" id="emailInput" required class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-600 outline-none">
+                    <p id="emailError" class="text-red-600 text-sm mt-1 hidden"></p>
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">Company URL</label>
@@ -74,6 +82,55 @@
         </div>
     </section>
 
+    <script>
+        // Set timestamp when form loads (bot detection)
+        document.getElementById('formRenderedAt').value = Date.now().toString();
+
+        // Blocked personal email domains
+        const blockedDomains = [
+            'gmail.com','googlemail.com','yahoo.com','yahoo.co.uk','yahoo.ca',
+            'hotmail.com','hotmail.co.uk','outlook.com','live.com','msn.com',
+            'aol.com','icloud.com','me.com','mac.com','mail.com','protonmail.com',
+            'proton.me','zoho.com','yandex.com','gmx.com','gmx.net',
+            'fastmail.com','tutanota.com','hey.com','inbox.com','rediffmail.com',
+            'qq.com','163.com','126.com','sina.com','comcast.net','verizon.net',
+            'att.net','sbcglobal.net','bellsouth.net','cox.net','charter.net',
+            'earthlink.net','optonline.net','rocketmail.com','ymail.com'
+        ];
+
+        const emailInput = document.getElementById('emailInput');
+        const emailError = document.getElementById('emailError');
+
+        emailInput.addEventListener('blur', function() {
+            validateEmail();
+        });
+
+        function validateEmail() {
+            const email = emailInput.value.trim().toLowerCase();
+            emailError.classList.add('hidden');
+            emailError.textContent = '';
+
+            if (!email) return true;
+
+            const domain = email.split('@')[1];
+            if (!domain) return true;
+
+            if (blockedDomains.includes(domain)) {
+                emailError.textContent = 'Please use your work email address. Personal email addresses (Gmail, Hotmail, etc.) are not accepted.';
+                emailError.classList.remove('hidden');
+                return false;
+            }
+            return true;
+        }
+
+        document.getElementById('auditForm').addEventListener('submit', function(e) {
+            if (!validateEmail()) {
+                e.preventDefault();
+                emailInput.focus();
+            }
+        });
+    </script>
+
 
 <section class="bg-slate-900 text-white py-20 px-6">
     <div class="max-w-4xl mx-auto text-center">
@@ -81,7 +138,7 @@
         <div class="space-y-4">
             <p class="text-xl font-semibold">Andy Knox</p>
             <p class="text-blue-400">GTM Specialist</p>
-            <p class="text-slate-300"> <a href mailto:"andyknox@saasguidesolutions.com"> andyknox@saasguidesolutions.com</p>
+            <p class="text-slate-300"><a href="mailto:andyknox@saasguidesolutions.com" class="hover:text-blue-400 transition">andyknox@saasguidesolutions.com</a></p>
             <div class="pt-6">
                 <a href="https://www.linkedin.com/in/andy-knox-176a52a/" target="_blank" class="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded-full transition">
                     Connect on LinkedIn
