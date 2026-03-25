@@ -153,8 +153,17 @@
         </div>
     </section>
 
+    <!-- Dashboard Screenshot -->
+    <section class="bg-slate-50 border-y border-slate-200 py-20">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold mb-2">See It in Action</h2>
+            <p class="text-slate-500 mb-8">The SpeedySheets dashboard showing total hours, earnings, and time entries from multiple sources.</p>
+            <img src="/speedysheets-dashboard.png" alt="SpeedySheets Dashboard - Total Hours, Earnings, and Time Entries" class="w-full rounded-lg shadow-lg border border-slate-200">
+        </div>
+    </section>
+
     <!-- Free Trial Form -->
-    <section id="speedysheets-trial" class="bg-slate-50 border-y border-slate-200 py-20">
+    <section id="speedysheets-trial" class="py-20">
         <div class="max-w-xl mx-auto px-6">
             <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-200">
                 <h2 class="text-2xl font-bold mb-2 text-center">Request Your Free Trial</h2>
@@ -248,24 +257,90 @@
         const ssEmailError = document.getElementById('ssEmailError');
 
         ssEmailInput.addEventListener('blur', function() { validateSSEmail(); });
+        ssEmailInput.addEventListener('input', function() {
+            if (!ssEmailError.classList.contains('hidden')) validateSSEmail();
+        });
 
         function validateSSEmail() {
             const email = ssEmailInput.value.trim().toLowerCase();
             ssEmailError.classList.add('hidden');
             ssEmailError.textContent = '';
+            ssEmailInput.classList.remove('border-red-500');
             if (!email) return true;
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                ssEmailError.textContent = 'Please enter a valid email address.';
+                ssEmailError.classList.remove('hidden');
+                ssEmailInput.classList.add('border-red-500');
+                return false;
+            }
+
             const domain = email.split('@')[1];
-            if (!domain) return true;
             if (blockedDomains.includes(domain)) {
                 ssEmailError.textContent = 'Please use your work email address. Personal email addresses (Gmail, Hotmail, etc.) are not accepted.';
                 ssEmailError.classList.remove('hidden');
+                ssEmailInput.classList.add('border-red-500');
                 return false;
             }
             return true;
         }
 
+        function showError(input, message) {
+            input.classList.add('border-red-500');
+            let err = input.parentElement.querySelector('.field-error');
+            if (!err) {
+                err = document.createElement('p');
+                err.className = 'field-error text-red-600 text-sm mt-1';
+                input.parentElement.appendChild(err);
+            }
+            err.textContent = message;
+        }
+
+        function clearError(input) {
+            input.classList.remove('border-red-500');
+            const err = input.parentElement.querySelector('.field-error');
+            if (err) err.remove();
+        }
+
+        // Clear errors on input
+        document.querySelectorAll('#speedySheetsForm input[required], #speedySheetsForm select[required]').forEach(function(el) {
+            el.addEventListener('input', function() { clearError(this); });
+            el.addEventListener('change', function() { clearError(this); });
+        });
+
         document.getElementById('speedySheetsForm').addEventListener('submit', function(e) {
-            if (!validateSSEmail()) { e.preventDefault(); ssEmailInput.focus(); }
+            let valid = true;
+            const name = this.querySelector('[name="name"]');
+            const email = this.querySelector('[name="email"]');
+            const contractor = this.querySelector('[name="is_contractor"]');
+            const industry = this.querySelector('[name="industry"]');
+
+            [name, email, contractor, industry].forEach(clearError);
+
+            if (!name.value.trim()) {
+                showError(name, 'Name is required.');
+                valid = false;
+            }
+            if (!email.value.trim()) {
+                showError(email, 'Work email is required.');
+                valid = false;
+            } else if (!validateSSEmail()) {
+                valid = false;
+            }
+            if (!contractor.value) {
+                showError(contractor, 'Please select an option.');
+                valid = false;
+            }
+            if (!industry.value.trim()) {
+                showError(industry, 'Industry is required.');
+                valid = false;
+            }
+
+            if (!valid) {
+                e.preventDefault();
+                this.querySelector('.border-red-500')?.focus();
+            }
         });
     </script>
 

@@ -133,28 +133,86 @@
             validateEmail();
         });
 
+        emailInput.addEventListener('input', function() {
+            if (!emailError.classList.contains('hidden')) validateEmail();
+        });
+
         function validateEmail() {
             const email = emailInput.value.trim().toLowerCase();
             emailError.classList.add('hidden');
             emailError.textContent = '';
+            emailInput.classList.remove('border-red-500');
 
             if (!email) return true;
 
-            const domain = email.split('@')[1];
-            if (!domain) return true;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                emailError.classList.remove('hidden');
+                emailInput.classList.add('border-red-500');
+                return false;
+            }
 
+            const domain = email.split('@')[1];
             if (blockedDomains.includes(domain)) {
                 emailError.textContent = 'Please use your work email address. Personal email addresses (Gmail, Hotmail, etc.) are not accepted.';
                 emailError.classList.remove('hidden');
+                emailInput.classList.add('border-red-500');
                 return false;
             }
+            emailInput.classList.remove('border-red-500');
             return true;
         }
 
+        function showError(input, message) {
+            input.classList.add('border-red-500');
+            let err = input.parentElement.querySelector('.field-error');
+            if (!err) {
+                err = document.createElement('p');
+                err.className = 'field-error text-red-600 text-sm mt-1';
+                input.parentElement.appendChild(err);
+            }
+            err.textContent = message;
+        }
+
+        function clearError(input) {
+            input.classList.remove('border-red-500');
+            const err = input.parentElement.querySelector('.field-error');
+            if (err) err.remove();
+        }
+
+        // Clear errors on input
+        document.querySelectorAll('#auditForm input[required], #auditForm textarea').forEach(function(el) {
+            el.addEventListener('input', function() { clearError(this); });
+        });
+
         document.getElementById('auditForm').addEventListener('submit', function(e) {
-            if (!validateEmail()) {
+            let valid = true;
+            const name = this.querySelector('[name="name"]');
+            const email = this.querySelector('[name="email"]');
+            const company = this.querySelector('[name="company"]');
+
+            // Clear previous errors
+            [name, email, company].forEach(clearError);
+
+            if (!name.value.trim()) {
+                showError(name, 'Name is required.');
+                valid = false;
+            }
+            if (!email.value.trim()) {
+                showError(email, 'Work email is required.');
+                valid = false;
+            } else if (!validateEmail()) {
+                valid = false;
+            }
+            if (!company.value.trim()) {
+                showError(company, 'Company URL is required.');
+                valid = false;
+            }
+
+            if (!valid) {
                 e.preventDefault();
-                emailInput.focus();
+                this.querySelector('.border-red-500')?.focus();
             }
         });
     </script>

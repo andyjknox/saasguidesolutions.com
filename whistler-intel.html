@@ -128,8 +128,17 @@
         </div>
     </section>
 
+    <!-- App Screenshot -->
+    <section class="py-20">
+        <div class="max-w-sm mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold mb-2">See It in Action</h2>
+            <p class="text-slate-500 mb-8">Live lift data with AI-verified queue times and crowdsourced confirmations.</p>
+            <img src="/whistler-intel-screenshot.jpg" alt="Whistler Intel App - Quickest Lift finder with live webcam and queue verification" class="w-full rounded-2xl shadow-lg border border-slate-700">
+        </div>
+    </section>
+
     <!-- Get in Touch Form -->
-    <section id="whistler-intel" class="py-20">
+    <section id="whistler-intel" class="bg-slate-50 border-y border-slate-200 py-20">
         <div class="max-w-xl mx-auto px-6">
             <div class="bg-slate-50 p-8 rounded-lg shadow-sm border border-slate-200">
                 <h2 class="text-2xl font-bold mb-2 text-center">Get Involved</h2>
@@ -193,6 +202,62 @@
 
     <script>
         document.getElementById('wiFormRenderedAt').value = Date.now().toString();
+
+        function showError(input, message) {
+            input.classList.add('border-red-500');
+            let err = input.parentElement.querySelector('.field-error');
+            if (!err) {
+                err = document.createElement('p');
+                err.className = 'field-error text-red-600 text-sm mt-1';
+                input.parentElement.appendChild(err);
+            }
+            err.textContent = message;
+        }
+
+        function clearError(input) {
+            input.classList.remove('border-red-500');
+            const err = input.parentElement.querySelector('.field-error');
+            if (err) err.remove();
+        }
+
+        // Clear errors on input
+        document.querySelectorAll('#whistlerForm input[required], #whistlerForm select[required]').forEach(function(el) {
+            el.addEventListener('input', function() { clearError(this); });
+            el.addEventListener('change', function() { clearError(this); });
+        });
+
+        document.getElementById('whistlerForm').addEventListener('submit', function(e) {
+            let valid = true;
+            const name = this.querySelector('[name="name"]');
+            const email = this.querySelector('[name="email"]');
+            const interest = this.querySelector('[name="interest_type"]');
+
+            [name, email, interest].forEach(clearError);
+
+            if (!name.value.trim()) {
+                showError(name, 'Name is required.');
+                valid = false;
+            }
+            if (!email.value.trim()) {
+                showError(email, 'Email is required.');
+                valid = false;
+            } else {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email.value.trim())) {
+                    showError(email, 'Please enter a valid email address.');
+                    valid = false;
+                }
+            }
+            if (!interest.value) {
+                showError(interest, 'Please select your interest.');
+                valid = false;
+            }
+
+            if (!valid) {
+                e.preventDefault();
+                this.querySelector('.border-red-500')?.focus();
+            }
+        });
     </script>
 
 </body>
