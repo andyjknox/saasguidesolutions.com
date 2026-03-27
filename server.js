@@ -373,4 +373,86 @@ app.post('/submit-whistler', async (req, res) => {
     }
 });
 
+// Booking Consultation Form
+app.use(express.json());
+app.post('/submit-booking', async (req, res) => {
+    const { name, email, company, notes, date, time, duration } = req.body;
+
+    // Rate limiting
+    const clientIp = req.ip || req.connection.remoteAddress;
+    if (isRateLimited(clientIp)) {
+        return res.status(429).json({ error: 'Too many requests' });
+    }
+
+    // Validate required fields
+    if (!name || !email || !date || !time || !duration) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({ error: 'Invalid email' });
+    }
+
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeCompany = escapeHtml(company);
+    const safeNotes = escapeHtml(notes);
+    const safeDate = escapeHtml(date);
+    const safeTime = escapeHtml(time);
+    const safeDuration = escapeHtml(String(duration));
+
+    try {
+        // Send notification to Andy
+        await resend.emails.send({
+            from: 'Bookings <andyknox@saasguidesolutions.com>',
+            to: 'andyknox@saasguidesolutions.com',
+            subject: `New Consultation Booking: ${safeName} - ${safeDate} at ${safeTime}`,
+            html: `
+                <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+                    <h2 style="color: #2563eb;">New Consultation Booked</h2>
+                    <div style="background: #eff6ff; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        <p style="margin: 0; font-size: 18px; font-weight: bold;">${safeDate} at ${safeTime}</p>
+                        <p style="margin: 5px 0 0; color: #666;">${safeDuration} minute consultation</p>
+                    </div>
+                    <p><strong>Name:</strong> ${safeName}</p>
+                    <p><strong>Email:</strong> ${safeEmail}</p>
+                    <p><strong>Company:</strong> ${safeCompany || '<em>Not provided</em>'}</p>
+                    <p><strong>Discussion Topic:</strong> ${safeNotes || '<em>Not provided</em>'}</p>
+                    <hr style="border: none; border-top: 1px solid #eee; margin: 15px 0;">
+                    <p style="color: #999; font-size: 12px;">Remember to send a calendar invite to ${safeEmail}</p>
+                </div>
+            `
+        });
+
+        // Send confirmation to the booker
+        await resend.emails.send({
+            from: 'SaaS Guide Solutions <andyknox@saasguidesolutions.com>',
+            to: email,
+            subject: `Consultation Confirmed: ${safeDate} at ${safeTime}`,
+            html: `
+                <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+                    <h2 style="color: #2563eb;">Your Consultation is Confirmed</h2>
+                    <p>Hi ${safeName},</p>
+                    <p>Your consultation with SaaS Guide Solutions has been booked.</p>
+                    <div style="background: #eff6ff; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                        <p style="margin: 0; font-size: 18px; font-weight: bold;">${safeDate} at ${safeTime} (PT)</p>
+                        <p style="margin: 5px 0 0; color: #666;">${safeDuration} minute video call</p>
+                    </div>
+                    <p>You'll receive a calendar invite with the video call link shortly.</p>
+                    <p>If you need to reschedule, simply reply to this email.</p>
+                    <hr style="border: none; border-top: 1px solid #eee; margin: 15px 0;">
+                    <p style="color: #999; font-size: 12px;">SaaS Guide Solutions | andyknox@saasguidesolutions.com</p>
+                </div>
+            `
+        });
+
+        res.json({ success: true });
+    } catch (error) {
+        console.error("Resend Error (Booking):", error);
+        res.status(500).json({ error: 'Failed to send confirmation' });
+    }
+});
+
 app.listen(PORT, () => console.log(`Server active on port ${PORT}`));

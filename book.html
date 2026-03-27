@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Consultation | SaaS Guide Solutions</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B04VW67709"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B04VW67709');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .cal-day { transition: all 0.15s; }
+        .cal-day:not(.disabled):hover { background-color: #eff6ff; border-color: #3b82f6; }
+        .cal-day.selected { background-color: #2563eb !important; color: white !important; border-color: #2563eb !important; }
+        .cal-day.disabled { opacity: 0.3; cursor: not-allowed; }
+        .cal-day.today { border-color: #2563eb; }
+        .time-slot { transition: all 0.15s; }
+        .time-slot:hover { background-color: #2563eb; color: white; border-color: #2563eb; }
+        .time-slot.selected { background-color: #2563eb; color: white; border-color: #2563eb; }
+        .step { display: none; }
+        .step.active { display: block; }
+        .step-indicator.completed { background-color: #2563eb; color: white; }
+        .step-indicator.current { border-color: #2563eb; color: #2563eb; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans leading-tight min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200">
+        <div class="max-w-3xl mx-auto px-6 py-6 flex items-center gap-4">
+            <a href="/">
+                <img src="https://www.saasguidesolutions.com/logo.png"
+                     alt="SaaS Guide Solutions"
+                     class="h-16 w-auto"
+                     style="image-rendering: -webkit-optimize-contrast; mix-blend-mode: multiply;">
+            </a>
+            <div>
+                <h1 class="font-bold text-lg">SaaS Guide Solutions</h1>
+                <p class="text-slate-500 text-sm">Book a Consultation</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-6 py-10">
+
+        <!-- Step Indicators -->
+        <div class="flex items-center justify-center gap-2 mb-10">
+            <div id="stepInd1" class="step-indicator current w-8 h-8 rounded-full border-2 border-slate-300 flex items-center justify-center text-sm font-bold">1</div>
+            <div class="w-12 h-0.5 bg-slate-300" id="stepLine1"></div>
+            <div id="stepInd2" class="step-indicator w-8 h-8 rounded-full border-2 border-slate-300 flex items-center justify-center text-sm font-bold text-slate-400">2</div>
+            <div class="w-12 h-0.5 bg-slate-300" id="stepLine2"></div>
+            <div id="stepInd3" class="step-indicator w-8 h-8 rounded-full border-2 border-slate-300 flex items-center justify-center text-sm font-bold text-slate-400">3</div>
+        </div>
+
+        <!-- STEP 1: Select Duration + Date + Time -->
+        <div id="step1" class="step active">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+
+                <!-- Meeting Info -->
+                <div class="p-6 border-b border-slate-200">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-lg">Strategy Consultation</h2>
+                            <p class="text-slate-500 text-sm">Andy Knox | Video Call</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Duration Selection -->
+                <div class="p-6 border-b border-slate-200">
+                    <label class="block text-sm font-bold uppercase tracking-wide text-slate-500 mb-3">Duration</label>
+                    <div class="flex gap-3">
+                        <button type="button" class="duration-btn px-5 py-2 rounded-full border-2 border-slate-200 text-sm font-semibold hover:border-blue-600 hover:text-blue-600 transition" data-duration="15">15 min</button>
+                        <button type="button" class="duration-btn selected px-5 py-2 rounded-full border-2 border-blue-600 bg-blue-600 text-white text-sm font-semibold" data-duration="30">30 min</button>
+                        <button type="button" class="duration-btn px-5 py-2 rounded-full border-2 border-slate-200 text-sm font-semibold hover:border-blue-600 hover:text-blue-600 transition" data-duration="60">60 min</button>
+                    </div>
+                </div>
+
+                <div class="md:flex">
+                    <!-- Calendar -->
+                    <div class="p-6 md:w-1/2 md:border-r border-b md:border-b-0 border-slate-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <button type="button" id="prevMonth" class="p-1 hover:bg-slate-100 rounded">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
+                            <h3 id="calMonthYear" class="font-bold text-sm"></h3>
+                            <button type="button" id="nextMonth" class="p-1 hover:bg-slate-100 rounded">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-7 gap-1 text-center mb-2">
+                            <div class="text-xs font-medium text-slate-400 py-1">Mon</div>
+                            <div class="text-xs font-medium text-slate-400 py-1">Tue</div>
+                            <div class="text-xs font-medium text-slate-400 py-1">Wed</div>
+                            <div class="text-xs font-medium text-slate-400 py-1">Thu</div>
+                            <div class="text-xs font-medium text-slate-400 py-1">Fri</div>
+                            <div class="text-xs font-medium text-slate-400 py-1">Sat</div>
+                            <div class="text-xs font-medium text-slate-400 py-1">Sun</div>
+                        </div>
+                        <div id="calGrid" class="grid grid-cols-7 gap-1"></div>
+                        <p class="text-xs text-slate-400 mt-4">Pacific Time (PT)</p>
+                    </div>
+
+                    <!-- Time Slots -->
+                    <div class="p-6 md:w-1/2">
+                        <h3 id="timeSlotsTitle" class="font-bold text-sm mb-4 text-slate-500">Select a date to see times</h3>
+                        <div id="timeSlots" class="space-y-2 max-h-72 overflow-y-auto pr-2"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- STEP 2: Your Details -->
+        <div id="step2" class="step">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+
+                <!-- Booking Summary -->
+                <div class="p-6 border-b border-slate-200 bg-blue-50">
+                    <div class="flex items-center gap-3 text-sm">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        <span id="bookingSummary" class="font-semibold text-blue-800"></span>
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <h2 class="text-xl font-bold mb-6">Your Details</h2>
+                    <form id="bookingForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Name <span class="text-red-500">*</span></label>
+                            <input type="text" id="bookName" required class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Email <span class="text-red-500">*</span></label>
+                            <input type="email" id="bookEmail" required class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Company</label>
+                            <input type="text" id="bookCompany" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">What would you like to discuss?</label>
+                            <textarea id="bookNotes" rows="3" placeholder="Brief description of your goals or challenges..." class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none"></textarea>
+                        </div>
+                        <div class="flex gap-3 pt-2">
+                            <button type="button" id="backToStep1" class="px-6 py-3 border-2 border-slate-300 rounded-lg font-semibold hover:bg-slate-50 transition">Back</button>
+                            <button type="submit" class="flex-1 bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition">Confirm Booking</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 3: Confirmation -->
+        <div id="step3" class="step">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-10 text-center">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <h2 class="text-2xl font-bold mb-2">You're Booked!</h2>
+                <p class="text-slate-600 mb-4" id="confirmationDetails"></p>
+                <p class="text-slate-500 text-sm mb-8">A confirmation email has been sent. You'll receive a calendar invite with the video call link shortly.</p>
+                <div class="border-t border-slate-200 pt-6 mt-6">
+                    <p class="text-xs text-slate-400">Need to reschedule? Reply to the confirmation email or contact <a href="mailto:andyknox@saasguidesolutions.com" class="text-blue-600 hover:underline">andyknox@saasguidesolutions.com</a></p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="py-8 text-center text-slate-400 text-sm">
+        &copy; 2026 SaaS Guide Solutions. All rights reserved.
+    </footer>
+
+    <script>
+        // State
+        let selectedDate = null;
+        let selectedTime = null;
+        let selectedDuration = 30;
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        const today = new Date();
+        today.setHours(0,0,0,0);
+
+        // Available time slots (9am-5pm PT, business hours)
+        const timeSlots = [
+            '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM',
+            '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM',
+            '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM',
+            '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM'
+        ];
+
+        // Duration buttons
+        document.querySelectorAll('.duration-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.duration-btn').forEach(function(b) {
+                    b.classList.remove('selected', 'bg-blue-600', 'text-white', 'border-blue-600');
+                    b.classList.add('border-slate-200');
+                });
+                this.classList.add('selected', 'bg-blue-600', 'text-white', 'border-blue-600');
+                this.classList.remove('border-slate-200');
+                selectedDuration = parseInt(this.dataset.duration);
+            });
+        });
+
+        // Calendar rendering
+        const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+        function renderCalendar() {
+            const grid = document.getElementById('calGrid');
+            const monthYear = document.getElementById('calMonthYear');
+            grid.innerHTML = '';
+            monthYear.textContent = monthNames[currentMonth] + ' ' + currentYear;
+
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            // Monday = 0, Sunday = 6
+            let startDay = firstDay.getDay() - 1;
+            if (startDay < 0) startDay = 6;
+
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+            // Empty cells
+            for (let i = 0; i < startDay; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'py-2';
+                grid.appendChild(empty);
+            }
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const date = new Date(currentYear, currentMonth, d);
+                const dayOfWeek = date.getDay();
+                const isPast = date < today;
+                const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+                const isDisabled = isPast || isWeekend;
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = d;
+                btn.className = 'cal-day w-full py-2 rounded-lg text-sm font-medium border-2 border-transparent cursor-pointer';
+
+                if (isDisabled) {
+                    btn.classList.add('disabled', 'text-slate-300');
+                    btn.disabled = true;
+                } else {
+                    // Check if today
+                    if (date.getTime() === today.getTime()) {
+                        btn.classList.add('today');
+                    }
+                    // Check if selected
+                    if (selectedDate && date.getTime() === selectedDate.getTime()) {
+                        btn.classList.add('selected');
+                    }
+
+                    btn.addEventListener('click', function() {
+                        selectedDate = date;
+                        selectedTime = null;
+                        renderCalendar();
+                        renderTimeSlots();
+                    });
+                }
+
+                grid.appendChild(btn);
+            }
+        }
+
+        function renderTimeSlots() {
+            const container = document.getElementById('timeSlots');
+            const title = document.getElementById('timeSlotsTitle');
+
+            if (!selectedDate) {
+                title.textContent = 'Select a date to see times';
+                container.innerHTML = '';
+                return;
+            }
+
+            const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+            title.textContent = dayNames[selectedDate.getDay()] + ', ' + monthNames[selectedDate.getMonth()] + ' ' + selectedDate.getDate();
+
+            container.innerHTML = '';
+            timeSlots.forEach(function(time) {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = time;
+                btn.className = 'time-slot w-full py-2.5 px-4 rounded-lg border-2 border-slate-200 text-sm font-semibold text-left cursor-pointer';
+
+                if (selectedTime === time) {
+                    btn.classList.add('selected');
+                }
+
+                btn.addEventListener('click', function() {
+                    selectedTime = time;
+                    renderTimeSlots();
+                    goToStep(2);
+                });
+
+                container.appendChild(btn);
+            });
+        }
+
+        // Navigation
+        document.getElementById('prevMonth').addEventListener('click', function() {
+            currentMonth--;
+            if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+            renderCalendar();
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', function() {
+            currentMonth++;
+            if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+            renderCalendar();
+        });
+
+        // Step management
+        function goToStep(step) {
+            document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+            document.getElementById('step' + step).classList.add('active');
+
+            // Update indicators
+            for (let i = 1; i <= 3; i++) {
+                const ind = document.getElementById('stepInd' + i);
+                ind.classList.remove('completed', 'current');
+                ind.classList.add('text-slate-400');
+                ind.style.backgroundColor = '';
+                ind.style.color = '';
+                if (i < step) {
+                    ind.classList.add('completed');
+                    ind.style.backgroundColor = '#2563eb';
+                    ind.style.color = 'white';
+                    ind.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+                } else if (i === step) {
+                    ind.classList.add('current');
+                    ind.classList.remove('text-slate-400');
+                    ind.textContent = i;
+                } else {
+                    ind.textContent = i;
+                }
+            }
+            // Update step lines
+            document.getElementById('stepLine1').style.backgroundColor = step > 1 ? '#2563eb' : '#d1d5db';
+            document.getElementById('stepLine2').style.backgroundColor = step > 2 ? '#2563eb' : '#d1d5db';
+
+            // Update summary
+            if (step === 2 && selectedDate && selectedTime) {
+                const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+                document.getElementById('bookingSummary').textContent =
+                    dayNames[selectedDate.getDay()] + ', ' +
+                    monthNames[selectedDate.getMonth()] + ' ' + selectedDate.getDate() + ', ' +
+                    selectedDate.getFullYear() + ' at ' + selectedTime +
+                    ' (' + selectedDuration + ' min)';
+            }
+        }
+
+        document.getElementById('backToStep1').addEventListener('click', function() {
+            goToStep(1);
+        });
+
+        // Form validation & submission
+        function showError(input, message) {
+            input.classList.add('border-red-500');
+            let err = input.parentElement.querySelector('.field-error');
+            if (!err) {
+                err = document.createElement('p');
+                err.className = 'field-error text-red-600 text-sm mt-1';
+                input.parentElement.appendChild(err);
+            }
+            err.textContent = message;
+        }
+
+        function clearError(input) {
+            input.classList.remove('border-red-500');
+            const err = input.parentElement.querySelector('.field-error');
+            if (err) err.remove();
+        }
+
+        document.querySelectorAll('#bookingForm input[required]').forEach(function(el) {
+            el.addEventListener('input', function() { clearError(this); });
+        });
+
+        document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            let valid = true;
+            const nameEl = document.getElementById('bookName');
+            const emailEl = document.getElementById('bookEmail');
+
+            [nameEl, emailEl].forEach(clearError);
+
+            if (!nameEl.value.trim()) {
+                showError(nameEl, 'Name is required.');
+                valid = false;
+            }
+            if (!emailEl.value.trim()) {
+                showError(emailEl, 'Email is required.');
+                valid = false;
+            } else {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailEl.value.trim())) {
+                    showError(emailEl, 'Please enter a valid email address.');
+                    valid = false;
+                }
+            }
+
+            if (!valid) {
+                this.querySelector('.border-red-500')?.focus();
+                return;
+            }
+
+            // Submit via fetch
+            const submitBtn = this.querySelector('[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Booking...';
+
+            const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+            const dateStr = dayNames[selectedDate.getDay()] + ', ' +
+                monthNames[selectedDate.getMonth()] + ' ' + selectedDate.getDate() + ', ' +
+                selectedDate.getFullYear();
+
+            try {
+                const resp = await fetch('/submit-booking', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        name: nameEl.value.trim(),
+                        email: emailEl.value.trim(),
+                        company: document.getElementById('bookCompany').value.trim(),
+                        notes: document.getElementById('bookNotes').value.trim(),
+                        date: dateStr,
+                        time: selectedTime,
+                        duration: selectedDuration,
+                    })
+                });
+
+                if (resp.ok) {
+                    document.getElementById('confirmationDetails').textContent =
+                        dateStr + ' at ' + selectedTime + ' (' + selectedDuration + ' min) — Confirmation sent to ' + emailEl.value.trim();
+                    goToStep(3);
+                } else {
+                    const text = await resp.text();
+                    alert('Something went wrong. Please try again or email andyknox@saasguidesolutions.com directly.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Confirm Booking';
+                }
+            } catch (err) {
+                alert('Connection error. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Confirm Booking';
+            }
+        });
+
+        // Init
+        renderCalendar();
+    </script>
+
+</body>
+</html>
