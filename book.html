@@ -271,7 +271,14 @@
             }
         }
 
-        function renderTimeSlots() {
+        function getISODate(date) {
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            return y + '-' + m + '-' + d;
+        }
+
+        async function renderTimeSlots() {
             const container = document.getElementById('timeSlots');
             const title = document.getElementById('timeSlotsTitle');
 
@@ -284,8 +291,28 @@
             const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
             title.textContent = dayNames[selectedDate.getDay()] + ', ' + monthNames[selectedDate.getMonth()] + ' ' + selectedDate.getDate();
 
+            container.innerHTML = '<p class="text-sm text-slate-400 text-center py-4">Loading availability...</p>';
+
+            // Fetch real availability from server
+            let availableSlots = timeSlots;
+            try {
+                const resp = await fetch('/api/availability?date=' + getISODate(selectedDate));
+                if (resp.ok) {
+                    const data = await resp.json();
+                    availableSlots = data.slots;
+                }
+            } catch (e) {
+                // Fallback to all slots
+            }
+
             container.innerHTML = '';
-            timeSlots.forEach(function(time) {
+
+            if (availableSlots.length === 0) {
+                container.innerHTML = '<p class="text-sm text-slate-500 text-center py-4">No available times on this date. Please select another day.</p>';
+                return;
+            }
+
+            availableSlots.forEach(function(time) {
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.textContent = time;
@@ -426,7 +453,8 @@
                 const resp = await fetch('/submit-booking', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams({
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
                         name: nameEl.value.trim(),
                         email: emailEl.value.trim(),
                         company: document.getElementById('bookCompany').value.trim(),
@@ -434,6 +462,7 @@
                         date: dateStr,
                         time: selectedTime,
                         duration: selectedDuration,
+                        isoDate: getISODate(selectedDate),
                     })
                 });
 

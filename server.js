@@ -1,13 +1,172 @@
+require('dotenv').config();
 const express = require('express');
 const { Resend } = require('resend');
+const { google } = require('googleapis');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
 const PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(__dirname));
+
+// ==================== Google Calendar OAuth ====================
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI || `http://localhost:${PORT}/auth/google/callback`;
+const TOKEN_PATH = process.env.GOOGLE_TOKEN_JSON
+    ? null // Use env var in production
+    : path.join(__dirname, 'google-token.json');
+const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || 'primary';
+
+const oauth2Client = new google.auth.OAuth2(
+    GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET,
+    GOOGLE_REDIRECT_URI
+);
+
+// Load saved token
+function loadToken() {
+    // First check env var (for Railway)
+    if (process.env.GOOGLE_TOKEN_JSON) {
+        try {
+            const tokens = JSON.parse(process.env.GOOGLE_TOKEN_JSON);
+            oauth2Client.setCredentials(tokens);
+            return true;
+        } catch (e) {
+            console.error('Failed to parse GOOGLE_TOKEN_JSON env var:', e);
+            return false;
+        }
+    }
+    // Then check file (for local dev)
+    if (TOKEN_PATH && fs.existsSync(TOKEN_PATH)) {
+        try {
+            const tokens = JSON.parse(fs.readFileSync(TOKEN_PATH, 'utf8'));
+            oauth2Client.setCredentials(tokens);
+            return true;
+        } catch (e) {
+            console.error('Failed to load token file:', e);
+            return false;
+        }
+    }
+    return false;
+}
+
+let calendarConnected = loadToken();
+
+// OAuth: Step 1 - Redirect to Google
+app.get('/auth/google', (req, res) => {
+    const authUrl = oauth2Client.generateAuthUrl({
+        access_type: 'offline',
+        prompt: 'consent',
+        scope: ['https://www.googleapis.com/auth/calendar'],
+    });
+    res.redirect(authUrl);
+});
+
+// OAuth: Step 2 - Handle callback
+app.get('/auth/google/callback', async (req, res) => {
+    const { code } = req.query;
+    if (!code) return res.status(400).send('Missing authorization code');
+
+    try {
+        const { tokens } = await oauth2Client.getToken(code);
+        oauth2Client.setCredentials(tokens);
+        calendarConnected = true;
+
+        // Save token locally for dev
+        if (TOKEN_PATH) {
+            fs.writeFileSync(TOKEN_PATH, JSON.stringify(tokens, null, 2));
+        }
+
+        res.send(`
+            <div style="font-family: sans-serif; text-align: center; padding: 50px;">
+                <h1 style="color: #16a34a;">Calendar Connected!</h1>
+                <p>Google Calendar is now linked to your booking page.</p>
+                <p style="color: #666; font-size: 14px; margin-top: 20px;">
+                    <strong>For Railway:</strong> Copy this token JSON and set it as the <code>GOOGLE_TOKEN_JSON</code> environment variable:
+                </p>
+                <textarea style="width: 100%; max-width: 600px; height: 120px; margin-top: 10px; font-family: monospace; font-size: 11px; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">${JSON.stringify(tokens)}</textarea>
+                <br><br>
+                <a href="/" style="color: #2563eb; text-decoration: none; font-weight: bold;">Back to Home</a>
+            </div>
+        `);
+    } catch (error) {
+        console.error('OAuth callback error:', error);
+        res.status(500).send('Failed to authorize. Please try again.');
+    }
+});
+
+// API: Check calendar availability for a given date
+app.get('/api/availability', async (req, res) => {
+    if (!calendarConnected) {
+        // If calendar not connected, return all default slots as available
+        return res.json({ slots: getDefaultSlots() });
+    }
+
+    const { date } = req.query; // Format: YYYY-MM-DD
+    if (!date) return res.status(400).json({ error: 'Date required' });
+
+    try {
+        const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
+        const startOfDay = new Date(date + 'T00:00:00-07:00'); // PT
+        const endOfDay = new Date(date + 'T23:59:59-07:00');
+
+        const events = await calendar.events.list({
+            calendarId: CALENDAR_ID,
+            timeMin: startOfDay.toISOString(),
+            timeMax: endOfDay.toISOString(),
+            singleEvents: true,
+            orderBy: 'startTime',
+        });
+
+        const busySlots = (events.data.items || []).map(event => ({
+            start: new Date(event.start.dateTime || event.start.date),
+            end: new Date(event.end.dateTime || event.end.date),
+        }));
+
+        // Filter out busy times from available slots
+        const allSlots = getDefaultSlots();
+        const available = allSlots.filter(slot => {
+            const slotStart = parseSlotTime(date, slot);
+            const slotEnd = new Date(slotStart.getTime() + 30 * 60 * 1000);
+            return !busySlots.some(busy =>
+                slotStart < busy.end && slotEnd > busy.start
+            );
+        });
+
+        res.json({ slots: available });
+    } catch (error) {
+        console.error('Calendar availability error:', error);
+        // Fallback to all slots if calendar errors
+        res.json({ slots: getDefaultSlots() });
+    }
+});
+
+// API: Calendar connection status
+app.get('/api/calendar-status', (req, res) => {
+    res.json({ connected: calendarConnected });
+});
+
+function getDefaultSlots() {
+    return [
+        '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM',
+        '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM',
+        '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM',
+        '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM'
+    ];
+}
+
+function parseSlotTime(dateStr, timeStr) {
+    const [time, period] = timeStr.split(' ');
+    let [hours, minutes] = time.split(':').map(Number);
+    if (period === 'PM' && hours !== 12) hours += 12;
+    if (period === 'AM' && hours === 12) hours = 0;
+    return new Date(`${dateStr}T${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00-07:00`);
+}
 
 // Simple in-memory rate limiter (per IP, 3 submissions per 15 minutes)
 const rateLimitMap = new Map();
@@ -374,9 +533,8 @@ app.post('/submit-whistler', async (req, res) => {
 });
 
 // Booking Consultation Form
-app.use(express.json());
 app.post('/submit-booking', async (req, res) => {
-    const { name, email, company, notes, date, time, duration } = req.body;
+    const { name, email, company, notes, date, time, duration, isoDate } = req.body;
 
     // Rate limiting
     const clientIp = req.ip || req.connection.remoteAddress;
@@ -403,7 +561,44 @@ app.post('/submit-booking', async (req, res) => {
     const safeTime = escapeHtml(time);
     const safeDuration = escapeHtml(String(duration));
 
+    // Create Google Calendar event if connected
+    let calendarEventCreated = false;
+    if (calendarConnected && isoDate) {
+        try {
+            const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
+            const startTime = parseSlotTime(isoDate, time);
+            const endTime = new Date(startTime.getTime() + parseInt(duration) * 60 * 1000);
+
+            await calendar.events.insert({
+                calendarId: CALENDAR_ID,
+                requestBody: {
+                    summary: `Consultation: ${name}${company ? ' (' + company + ')' : ''}`,
+                    description: `Booked via saasguidesolutions.com\n\nName: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\nTopic: ${notes || 'N/A'}`,
+                    start: { dateTime: startTime.toISOString(), timeZone: 'America/Los_Angeles' },
+                    end: { dateTime: endTime.toISOString(), timeZone: 'America/Los_Angeles' },
+                    attendees: [
+                        { email: email, displayName: name },
+                    ],
+                    reminders: { useDefault: true },
+                    conferenceData: {
+                        createRequest: { requestId: Date.now().toString() }
+                    },
+                },
+                conferenceDataVersion: 1,
+                sendUpdates: 'all',
+            });
+            calendarEventCreated = true;
+        } catch (error) {
+            console.error('Calendar event creation error:', error);
+            // Continue with email notification even if calendar fails
+        }
+    }
+
     try {
+        const calNote = calendarEventCreated
+            ? '<p style="color: #16a34a; font-weight: bold;">Calendar event created automatically with invite sent.</p>'
+            : '<p style="color: #999; font-size: 12px;">Calendar not connected - remember to send a calendar invite to ' + safeEmail + '</p>';
+
         // Send notification to Andy
         await resend.emails.send({
             from: 'Bookings <andyknox@saasguidesolutions.com>',
@@ -421,12 +616,16 @@ app.post('/submit-booking', async (req, res) => {
                     <p><strong>Company:</strong> ${safeCompany || '<em>Not provided</em>'}</p>
                     <p><strong>Discussion Topic:</strong> ${safeNotes || '<em>Not provided</em>'}</p>
                     <hr style="border: none; border-top: 1px solid #eee; margin: 15px 0;">
-                    <p style="color: #999; font-size: 12px;">Remember to send a calendar invite to ${safeEmail}</p>
+                    ${calNote}
                 </div>
             `
         });
 
         // Send confirmation to the booker
+        const meetingNote = calendarEventCreated
+            ? '<p>A calendar invite with a Google Meet link has been sent to your email.</p>'
+            : '<p>You\'ll receive a calendar invite with the video call link shortly.</p>';
+
         await resend.emails.send({
             from: 'SaaS Guide Solutions <andyknox@saasguidesolutions.com>',
             to: email,
@@ -440,7 +639,7 @@ app.post('/submit-booking', async (req, res) => {
                         <p style="margin: 0; font-size: 18px; font-weight: bold;">${safeDate} at ${safeTime} (PT)</p>
                         <p style="margin: 5px 0 0; color: #666;">${safeDuration} minute video call</p>
                     </div>
-                    <p>You'll receive a calendar invite with the video call link shortly.</p>
+                    ${meetingNote}
                     <p>If you need to reschedule, simply reply to this email.</p>
                     <hr style="border: none; border-top: 1px solid #eee; margin: 15px 0;">
                     <p style="color: #999; font-size: 12px;">SaaS Guide Solutions | andyknox@saasguidesolutions.com</p>
@@ -448,7 +647,7 @@ app.post('/submit-booking', async (req, res) => {
             `
         });
 
-        res.json({ success: true });
+        res.json({ success: true, calendarEvent: calendarEventCreated });
     } catch (error) {
         console.error("Resend Error (Booking):", error);
         res.status(500).json({ error: 'Failed to send confirmation' });
