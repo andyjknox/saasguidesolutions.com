@@ -533,9 +533,32 @@ app.post('/submit-whistler', async (req, res) => {
     }
 });
 
+// Duplicate booking prevention (by email + IP)
+const bookingTracker = new Map();
+const BOOKING_COOLDOWN = 7 * 24 * 60 * 60 * 1000; // 7 days
+
+function hasExistingBooking(email, ip) {
+    const now = Date.now();
+    // Check by email
+    const emailKey = 'email:' + email.trim().toLowerCase();
+    const emailEntry = bookingTracker.get(emailKey);
+    if (emailEntry && (now - emailEntry) < BOOKING_COOLDOWN) return true;
+    // Check by IP
+    const ipKey = 'ip:' + ip;
+    const ipEntry = bookingTracker.get(ipKey);
+    if (ipEntry && (now - ipEntry) < BOOKING_COOLDOWN) return true;
+    return false;
+}
+
+function trackBooking(email, ip) {
+    const now = Date.now();
+    bookingTracker.set('email:' + email.trim().toLowerCase(), now);
+    bookingTracker.set('ip:' + ip, now);
+}
+
 // Booking Consultation Form
 app.post('/submit-booking', async (req, res) => {
-    const { name, email, company, notes, date, time, duration, isoDate } = req.body;
+    const { name, email, company, notes, date, time, duration, isoDate, meetingType, phone } = req.body;
 
     // Rate limiting
     const clientIp = req.ip || req.connection.remoteAddress;
@@ -554,6 +577,16 @@ app.post('/submit-booking', async (req, res) => {
         return res.status(400).json({ error: 'Invalid email' });
     }
 
+    // Validate phone if phone call selected
+    if (meetingType === 'phone' && (!phone || !/^[\d\s\-\(\)\+\.]{7,20}$/.test(phone))) {
+        return res.status(400).json({ error: 'Valid phone number required for phone calls' });
+    }
+
+    // Duplicate booking prevention
+    if (hasExistingBooking(email, clientIp)) {
+        return res.status(409).json({ error: 'You have already booked a meeting. You cannot book multiple meetings. Please contact andyknox@saasguidesolutions.com to reschedule.' });
+    }
+
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safeCompany = escapeHtml(company);
@@ -561,6 +594,8 @@ app.post('/submit-booking', async (req, res) => {
     const safeDate = escapeHtml(date);
     const safeTime = escapeHtml(time);
     const safeDuration = escapeHtml(String(duration));
+    const safePhone = escapeHtml(phone);
+    const safeMeetingType = meetingType === 'phone' ? 'Phone Call' : 'Video Call';
 
     // Create Google Calendar event if connected
     let calendarEventCreated = false;
@@ -570,22 +605,28 @@ app.post('/submit-booking', async (req, res) => {
             const startTime = parseSlotTime(isoDate, time);
             const endTime = new Date(startTime.getTime() + parseInt(duration) * 60 * 1000);
 
+            const eventBody = {
+                summary: `Consultation: ${name}${company ? ' (' + company + ')' : ''} [${safeMeetingType}]`,
+                description: `Booked via saasguidesolutions.com\n\nName: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\nType: ${safeMeetingType}${meetingType === 'phone' ? '\nPhone: ' + phone : ''}\nTopic: ${notes || 'N/A'}`,
+                start: { dateTime: startTime.toISOString(), timeZone: 'America/Los_Angeles' },
+                end: { dateTime: endTime.toISOString(), timeZone: 'America/Los_Angeles' },
+                attendees: [
+                    { email: email, displayName: name },
+                ],
+                reminders: { useDefault: true },
+            };
+
+            // Only add Google Meet for video calls
+            if (meetingType !== 'phone') {
+                eventBody.conferenceData = {
+                    createRequest: { requestId: Date.now().toString() }
+                };
+            }
+
             await calendar.events.insert({
                 calendarId: CALENDAR_ID,
-                requestBody: {
-                    summary: `Consultation: ${name}${company ? ' (' + company + ')' : ''}`,
-                    description: `Booked via saasguidesolutions.com\n\nName: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\nTopic: ${notes || 'N/A'}`,
-                    start: { dateTime: startTime.toISOString(), timeZone: 'America/Los_Angeles' },
-                    end: { dateTime: endTime.toISOString(), timeZone: 'America/Los_Angeles' },
-                    attendees: [
-                        { email: email, displayName: name },
-                    ],
-                    reminders: { useDefault: true },
-                    conferenceData: {
-                        createRequest: { requestId: Date.now().toString() }
-                    },
-                },
-                conferenceDataVersion: 1,
+                requestBody: eventBody,
+                conferenceDataVersion: meetingType !== 'phone' ? 1 : 0,
                 sendUpdates: 'all',
             });
             calendarEventCreated = true;
@@ -604,16 +645,17 @@ app.post('/submit-booking', async (req, res) => {
         await resend.emails.send({
             from: 'Bookings <andyknox@saasguidesolutions.com>',
             to: 'andyknox@saasguidesolutions.com',
-            subject: `New Consultation Booking: ${safeName} - ${safeDate} at ${safeTime}`,
+            subject: `New Consultation Booking: ${safeName} - ${safeDate} at ${safeTime} [${safeMeetingType}]`,
             html: `
                 <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
                     <h2 style="color: #2563eb;">New Consultation Booked</h2>
                     <div style="background: #eff6ff; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
                         <p style="margin: 0; font-size: 18px; font-weight: bold;">${safeDate} at ${safeTime}</p>
-                        <p style="margin: 5px 0 0; color: #666;">${safeDuration} minute consultation</p>
+                        <p style="margin: 5px 0 0; color: #666;">${safeDuration} minute ${safeMeetingType.toLowerCase()}</p>
                     </div>
                     <p><strong>Name:</strong> ${safeName}</p>
                     <p><strong>Email:</strong> ${safeEmail}</p>
+                    ${meetingType === 'phone' ? '<p><strong>Phone:</strong> ' + safePhone + '</p>' : ''}
                     <p><strong>Company:</strong> ${safeCompany || '<em>Not provided</em>'}</p>
                     <p><strong>Discussion Topic:</strong> ${safeNotes || '<em>Not provided</em>'}</p>
                     <hr style="border: none; border-top: 1px solid #eee; margin: 15px 0;">
@@ -623,9 +665,14 @@ app.post('/submit-booking', async (req, res) => {
         });
 
         // Send confirmation to the booker
-        const meetingNote = calendarEventCreated
-            ? '<p>A calendar invite with a Google Meet link has been sent to your email.</p>'
-            : '<p>You\'ll receive a calendar invite with the video call link shortly.</p>';
+        let meetingNote;
+        if (meetingType === 'phone') {
+            meetingNote = '<p>We will call you at <strong>' + safePhone + '</strong> at the scheduled time.</p>';
+        } else if (calendarEventCreated) {
+            meetingNote = '<p>A calendar invite with a Google Meet link has been sent to your email.</p>';
+        } else {
+            meetingNote = '<p>You\'ll receive a calendar invite with the video call link shortly.</p>';
+        }
 
         await resend.emails.send({
             from: 'SaaS Guide Solutions <andyknox@saasguidesolutions.com>',
@@ -638,7 +685,7 @@ app.post('/submit-booking', async (req, res) => {
                     <p>Your consultation with SaaS Guide Solutions has been booked.</p>
                     <div style="background: #eff6ff; padding: 15px; border-radius: 8px; margin: 15px 0;">
                         <p style="margin: 0; font-size: 18px; font-weight: bold;">${safeDate} at ${safeTime} (PT)</p>
-                        <p style="margin: 5px 0 0; color: #666;">${safeDuration} minute video call</p>
+                        <p style="margin: 5px 0 0; color: #666;">${safeDuration} minute ${safeMeetingType.toLowerCase()}</p>
                     </div>
                     ${meetingNote}
                     <p>If you need to reschedule, simply reply to this email.</p>
@@ -647,6 +694,9 @@ app.post('/submit-booking', async (req, res) => {
                 </div>
             `
         });
+
+        // Track this booking to prevent duplicates
+        trackBooking(email, clientIp);
 
         res.json({ success: true, calendarEvent: calendarEventCreated });
     } catch (error) {
