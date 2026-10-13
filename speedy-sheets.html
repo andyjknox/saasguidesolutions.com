@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Tracking for Google Calendar | SpeedySheets by SaaS Guide Solutions</title>
-    <meta name="description" content="SpeedySheets pulls time data from Google Calendar, Outlook, and Chrome history to build timesheets automatically. Built for freelancers and consultants. Try free.">
-    <meta property="og:title" content="SpeedySheets — Automatic Time Tracking for Freelancers">
+    <title>AI Automatic Time Tracking for Freelancers | SpeedySheets </title>
+    <meta name="description" content="SpeedySheets pulls time data from Google Calendar, Outlook, and Chrome history, MS Office Programs to build timesheets automatically. Built for freelancers, developers and consultants. Try free.">
+    <meta property="og:title" content="SpeedySheets — Automatic Time Tracking for Sinlge Billers with 1-Many clients">
     <meta property="og:description" content="Turn your Google Calendar, Outlook, and Chrome history into timesheets and invoices. Cut 3-hour timesheets down to 5 minutes.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.saasguidesolutions.com/speedy-sheets.html">
@@ -131,11 +131,17 @@
 
     <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto relative z-50">
         <a href="/" class="flex flex-col items-center no-underline">
-            <img src="/image.png.png"
-                 alt="SpeedySheets"
-                 class="h-24 w-auto antialiased rounded-full">
+            <img src="https://www.saasguidesolutions.com/logo.png"
+                 alt="SaaS Guide Solutions"
+                 class="h-24 w-auto antialiased"
+                 style="image-rendering: -webkit-optimize-contrast; background-color: #f8fafc; mix-blend-mode: multiply;">
         </a>
-        <div class="flex items-center gap-6">
+        <button id="menuToggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle navigation menu">
+                <span class="w-6 h-0.5 bg-slate-900"></span>
+                <span class="w-6 h-0.5 bg-slate-900"></span>
+                <span class="w-6 h-0.5 bg-slate-900"></span>
+            </button>
+            <div class="hidden md:flex items-center gap-6">
             <div class="relative group">
                 <a href="/services.html" class="font-medium text-slate-700 hover:text-blue-600 transition inline-flex items-center gap-1 py-2">Services <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></a>
                 <div class="absolute left-0 top-full pt-2 hidden group-hover:block">
@@ -160,20 +166,35 @@
             <a href="/#audit" class="bg-blue-600 text-white px-5 py-2 rounded-md font-medium hover:bg-blue-700 transition">Get Audit</a>
         </div>
     </nav>
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4">
+        <div class="space-y-3">
+            <a href="/services.html" class="block font-medium text-slate-700 py-2">Services</a>
+            <a href="/services.html#core-services" class="block text-sm text-slate-500 pl-4">Core Services</a>
+            <a href="/services.html#industries" class="block text-sm text-slate-500 pl-4">Industries Served</a>
+            <a href="/services.html#engagement-models" class="block text-sm text-slate-500 pl-4">Engagement Models</a>
+            <a href="/services.html#tech-stack" class="block text-sm text-slate-500 pl-4">Tech Stack Expertise</a>
+            <a href="/solutions.html" class="block font-medium text-slate-700 py-2">Solutions</a>
+            <a href="/speedysheets.html" class="block text-sm text-slate-500 pl-4">SpeedySheets</a>
+            <a href="/whistler-intel.html" class="block text-sm text-slate-500 pl-4">Whistler Intel</a>
+            <a href="/playbook.html" class="block text-sm text-slate-500 pl-4">Sales Playbook</a>
+            <a href="/#audit" class="block bg-blue-600 text-white text-center px-5 py-2 rounded-md font-medium mt-3">Get Audit</a>
+        </div>
+    </div>
+    <script>document.getElementById('menuToggle').addEventListener('click',function(){document.getElementById('mobileMenu').classList.toggle('hidden')});</script>
 
     <!-- Hero -->
     <section class="max-w-4xl mx-auto px-6 py-20 text-center">
-        <img src="/image2.png.png" alt="SpeedySheets - Time Tracked. Fast." class="w-32 h-32 mx-auto mb-6 rounded-full shadow-md">
+        <img loading="lazy" src="/image2.png.png" alt="SpeedySheets - Time Tracked. Fast." class="w-80 mx-auto mb-6" style="background:transparent;">
         <span class="inline-block bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wide px-4 py-1.5 rounded-full mb-6">Free Trial</span>
         <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
-            Automatic Time Tracking for <br><span class="text-blue-600">Google Calendar Freelancers</span>
+            Automatic Time Tracking for <br><span class="text-blue-600"> Freelancers</span>
         </h1>
         <p class="text-lg text-slate-500 max-w-2xl mx-auto mb-4">
             SpeedySheets turns your Google Calendar, Outlook, and browser history into timesheets and invoices. No timers. No manual entry. Works with Chrome, Edge, and Firefox. Connect it and cut your timesheet from hours to 5 minutes.
         </p>
         <p class="text-sm text-slate-400 mb-8">Works with Google Calendar, Outlook, Chrome, Microsoft Edge, Firefox, and Microsoft Word.</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="https://app.saasguidesolutions.com" target="_blank" class="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-green-700 transition text-lg">
+            <a href="https://app.saasguidesolutions.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-green-700 transition text-lg">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 Start Free Trial
             </a>
@@ -187,6 +208,7 @@
         <div class="mt-12 max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg border border-slate-200">
             <div style="position:relative;padding-bottom:50%;height:0;overflow:hidden;">
                 <iframe src="https://kommodo.ai/recordings/VwwGVoAjkK12PFfDnKdL?onlyRecording=1"
+                        title="SpeedySheets product demo video"
                         style="position:absolute;top:-60px;left:0;width:100%;height:calc(100% + 60px);border:0;"
                         allowfullscreen></iframe>
             </div>
@@ -395,7 +417,7 @@
             <h2 class="text-3xl font-bold mb-4">Still Spending Hours on Timesheets?</h2>
             <p class="text-slate-500 mb-8 max-w-xl mx-auto">Connect your calendar, let SpeedySheets do the tracking, and get your Friday afternoons back. Free trial, no credit card required.</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="https://app.saasguidesolutions.com" target="_blank" class="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-green-700 transition text-lg">
+                <a href="https://app.saasguidesolutions.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-green-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-green-700 transition text-lg">
                     Start Free Trial
                 </a>
                 <a href="/book.html" class="inline-flex items-center justify-center gap-2 border-2 border-slate-900 text-slate-900 px-8 py-4 rounded-lg font-bold hover:bg-slate-900 hover:text-white transition text-lg">
@@ -408,7 +430,7 @@
     <footer class="py-10 text-center text-slate-400 text-sm">
         <a href="/book.html" class="text-blue-500 hover:text-blue-600 font-medium transition">Book a Call</a>
         <span class="mx-2">|</span>
-        <a href="/ANDY_KNOX_AI-AP2026-GEN.pdf" target="_blank" class="text-blue-500 hover:text-blue-600 font-medium transition">Resume</a>
+        <a href="/ANDY_KNOX_AI-AP2026-GEN.pdf" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-600 font-medium transition">Resume</a>
         <span class="mx-2">|</span>
         <a href="/privacy.html" class="text-blue-500 hover:text-blue-600 font-medium transition">Privacy</a>
         <span class="mx-2">|</span>

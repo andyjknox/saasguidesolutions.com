@@ -11,6 +11,28 @@ const PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Security headers
+app.use((req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+    if (process.env.NODE_ENV === 'production') {
+        res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+    }
+    next();
+});
+
+// Block access to sensitive files before static middleware
+app.use((req, res, next) => {
+    const blocked = ['/server.js', '/package.json', '/package-lock.json', '/.env', '/google-token.json', '/node_modules'];
+    if (blocked.some(f => req.path.toLowerCase().startsWith(f))) {
+        return res.status(404).send('Not found');
+    }
+    next();
+});
 app.use(express.static(__dirname));
 
 // ==================== Google Calendar OAuth ====================
@@ -83,15 +105,16 @@ app.get('/auth/google/callback', async (req, res) => {
             fs.writeFileSync(TOKEN_PATH, JSON.stringify(tokens, null, 2));
         }
 
+        // Log token to server console only — never expose to browser
+        console.log('GOOGLE_TOKEN_JSON for Railway env var:', JSON.stringify(tokens));
+
         res.send(`
             <div style="font-family: sans-serif; text-align: center; padding: 50px;">
                 <h1 style="color: #16a34a;">Calendar Connected!</h1>
                 <p>Google Calendar is now linked to your booking page.</p>
                 <p style="color: #666; font-size: 14px; margin-top: 20px;">
-                    <strong>For Railway:</strong> Copy this token JSON and set it as the <code>GOOGLE_TOKEN_JSON</code> environment variable:
+                    Token has been saved. Check server logs for the Railway environment variable value.
                 </p>
-                <textarea style="width: 100%; max-width: 600px; height: 120px; margin-top: 10px; font-family: monospace; font-size: 11px; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">${JSON.stringify(tokens)}</textarea>
-                <br><br>
                 <a href="/" style="color: #2563eb; text-decoration: none; font-weight: bold;">Back to Home</a>
             </div>
         `);
@@ -564,6 +587,10 @@ app.post('/submit-download', async (req, res) => {
     const clientIp = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress;
     const userAgent = req.headers['user-agent'] || 'Unknown';
 
+    if (isRateLimited(clientIp)) {
+        return res.status(429).json({ error: 'Too many requests' });
+    }
+
     if (!email) return res.status(400).json({ error: 'Email required' });
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -677,8 +704,8 @@ app.post('/submit-booking', async (req, res) => {
             const endTime = new Date(startTime.getTime() + parseInt(duration) * 60 * 1000);
 
             const eventBody = {
-                summary: `Consultation: ${name}${company ? ' (' + company + ')' : ''} [${safeMeetingType}]`,
-                description: `Booked via saasguidesolutions.com\n\nName: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\nType: ${safeMeetingType}${meetingType === 'phone' ? '\nPhone: ' + phone : ''}\nTopic: ${notes || 'N/A'}`,
+                summary: `Consultation: ${safeName}${safeCompany ? ' (' + safeCompany + ')' : ''} [${safeMeetingType}]`,
+                description: `Booked via saasguidesolutions.com\n\nName: ${safeName}\nEmail: ${safeEmail}\nCompany: ${safeCompany || 'N/A'}\nType: ${safeMeetingType}${meetingType === 'phone' ? '\nPhone: ' + safePhone : ''}\nTopic: ${safeNotes || 'N/A'}`,
                 start: { dateTime: startTime.toISOString(), timeZone: 'America/Los_Angeles' },
                 end: { dateTime: endTime.toISOString(), timeZone: 'America/Los_Angeles' },
                 attendees: [

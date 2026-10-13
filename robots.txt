@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Disallow: /auth/
+Disallow: /api/
+Disallow: /submit-
+Disallow: /server.js
+Disallow: /package.json
+Disallow: /node_modules/
+Disallow: /gtm-audit-discovery.html
+
+Sitemap: https://www.saasguidesolutions.com/sitemap.xml

@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales & Marketing Playbook Template | SaaS Guide Solutions</title>
+    <meta name="description" content="Free 31-page sales and marketing playbook template. Covers ICP, lead generation, sales process, CRM stages, and competitor analysis. Built from 15+ years scaling SaaS.">
+    <meta property="og:title" content="Free Sales & Marketing Playbook Template">
+    <meta property="og:description" content="A complete fill-in-the-blank GTM playbook covering mission, ICP, 6 lead gen channels, full sales process, and 7 appendices. Download free.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.saasguidesolutions.com/playbook.html">
+    <meta property="og:image" content="https://www.saasguidesolutions.com/logo.png">
+    <link rel="canonical" href="https://www.saasguidesolutions.com/playbook.html">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B04VW67709"></script>
     <script>
@@ -23,7 +30,12 @@
                  class="h-24 w-auto antialiased"
                  style="image-rendering: -webkit-optimize-contrast; background-color: #f8fafc; mix-blend-mode: multiply;">
         </a>
-        <div class="flex items-center gap-6">
+        <button id="menuToggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle navigation menu">
+                <span class="w-6 h-0.5 bg-slate-900"></span>
+                <span class="w-6 h-0.5 bg-slate-900"></span>
+                <span class="w-6 h-0.5 bg-slate-900"></span>
+            </button>
+            <div class="hidden md:flex items-center gap-6">
             <div class="relative group">
                 <a href="/services.html" class="font-medium text-slate-700 hover:text-blue-600 transition inline-flex items-center gap-1 py-2">Services <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></a>
                 <div class="absolute left-0 top-full pt-2 hidden group-hover:block">
@@ -48,6 +60,21 @@
             <a href="/#audit" class="bg-blue-600 text-white px-5 py-2 rounded-md font-medium hover:bg-blue-700 transition">Get Audit</a>
         </div>
     </nav>
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4">
+        <div class="space-y-3">
+            <a href="/services.html" class="block font-medium text-slate-700 py-2">Services</a>
+            <a href="/services.html#core-services" class="block text-sm text-slate-500 pl-4">Core Services</a>
+            <a href="/services.html#industries" class="block text-sm text-slate-500 pl-4">Industries Served</a>
+            <a href="/services.html#engagement-models" class="block text-sm text-slate-500 pl-4">Engagement Models</a>
+            <a href="/services.html#tech-stack" class="block text-sm text-slate-500 pl-4">Tech Stack Expertise</a>
+            <a href="/solutions.html" class="block font-medium text-slate-700 py-2">Solutions</a>
+            <a href="/speedysheets.html" class="block text-sm text-slate-500 pl-4">SpeedySheets</a>
+            <a href="/whistler-intel.html" class="block text-sm text-slate-500 pl-4">Whistler Intel</a>
+            <a href="/playbook.html" class="block text-sm text-slate-500 pl-4">Sales Playbook</a>
+            <a href="/#audit" class="block bg-blue-600 text-white text-center px-5 py-2 rounded-md font-medium mt-3">Get Audit</a>
+        </div>
+    </div>
+    <script>document.getElementById('menuToggle').addEventListener('click',function(){document.getElementById('mobileMenu').classList.toggle('hidden')});</script>
 
     <!-- Hero -->
     <section class="max-w-4xl mx-auto px-6 py-16 text-center">
@@ -396,7 +423,7 @@
     <footer class="py-10 text-center text-slate-400 text-sm">
         <a href="/book.html" class="text-blue-500 hover:text-blue-600 font-medium transition">Book a Call</a>
         <span class="mx-2">|</span>
-        <a href="/ANDY_KNOX_AI-AP2026-GEN.pdf" target="_blank" class="text-blue-500 hover:text-blue-600 font-medium transition">Resume</a>
+        <a href="/ANDY_KNOX_AI-AP2026-GEN.pdf" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-600 font-medium transition">Resume</a>
         <span class="mx-2">|</span>
         <a href="/privacy.html" class="text-blue-500 hover:text-blue-600 font-medium transition">Privacy</a>
         <span class="mx-2">|</span>

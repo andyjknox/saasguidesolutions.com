@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services | SaaS Guide Solutions</title>
+    <meta name="description" content="GTM strategy, RevOps architecture, CRM implementation, sales enablement, and AI automation services for SaaS companies. Salesforce, HubSpot, and full-stack expertise.">
+    <meta property="og:title" content="GTM & RevOps Services | SaaS Guide Solutions">
+    <meta property="og:description" content="End-to-end GTM consulting: CRM design, pipeline optimization, lead generation, and sales process automation for B2B SaaS.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.saasguidesolutions.com/services.html">
+    <meta property="og:image" content="https://www.saasguidesolutions.com/logo.png">
+    <link rel="canonical" href="https://www.saasguidesolutions.com/services.html">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B04VW67709"></script>
     <script>
@@ -23,7 +30,12 @@
                  class="h-24 w-auto antialiased"
                  style="image-rendering: -webkit-optimize-contrast; background-color: #f8fafc; mix-blend-mode: multiply;">
         </a>
-        <div class="flex items-center gap-6">
+        <button id="menuToggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle navigation menu">
+                <span class="w-6 h-0.5 bg-slate-900"></span>
+                <span class="w-6 h-0.5 bg-slate-900"></span>
+                <span class="w-6 h-0.5 bg-slate-900"></span>
+            </button>
+            <div class="hidden md:flex items-center gap-6">
             <div class="relative group">
                 <a href="/services.html" class="font-medium text-blue-600 inline-flex items-center gap-1 py-2">Services <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></a>
                 <div class="absolute left-0 top-full pt-2 hidden group-hover:block">
@@ -48,6 +60,21 @@
             <a href="/#audit" class="bg-blue-600 text-white px-5 py-2 rounded-md font-medium hover:bg-blue-700 transition">Get Audit</a>
         </div>
     </nav>
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4">
+        <div class="space-y-3">
+            <a href="/services.html" class="block font-medium text-slate-700 py-2">Services</a>
+            <a href="/services.html#core-services" class="block text-sm text-slate-500 pl-4">Core Services</a>
+            <a href="/services.html#industries" class="block text-sm text-slate-500 pl-4">Industries Served</a>
+            <a href="/services.html#engagement-models" class="block text-sm text-slate-500 pl-4">Engagement Models</a>
+            <a href="/services.html#tech-stack" class="block text-sm text-slate-500 pl-4">Tech Stack Expertise</a>
+            <a href="/solutions.html" class="block font-medium text-slate-700 py-2">Solutions</a>
+            <a href="/speedysheets.html" class="block text-sm text-slate-500 pl-4">SpeedySheets</a>
+            <a href="/whistler-intel.html" class="block text-sm text-slate-500 pl-4">Whistler Intel</a>
+            <a href="/playbook.html" class="block text-sm text-slate-500 pl-4">Sales Playbook</a>
+            <a href="/#audit" class="block bg-blue-600 text-white text-center px-5 py-2 rounded-md font-medium mt-3">Get Audit</a>
+        </div>
+    </div>
+    <script>document.getElementById('menuToggle').addEventListener('click',function(){document.getElementById('mobileMenu').classList.toggle('hidden')});</script>
 
     <!-- Hero -->
     <section class="max-w-4xl mx-auto px-6 py-16 text-center">
@@ -167,7 +194,7 @@
     <div class="max-w-5xl mx-auto px-6">
         
         <div class="mb-20">
-            <h2 class="text-3xl font-bold text-center mb-12">Industries & Departments Served </h2>
+            <h2 class="text-3xl font-bold text-center mb-12">Industries &amp; Departments Served </h2>
             <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
                 <div class="bg-slate-50 border border-slate-200 rounded-lg p-5">
                     <p class="font-semibold text-sm">Logistics &amp; Transportation</p>
@@ -256,20 +283,20 @@
                 <div>
                     <h3 class="font-bold text-sm uppercase tracking-wide text-slate-900 mb-5 pb-3 border-b-2 border-blue-600">CRM &amp; Sales Platforms</h3>
                     <div class="grid grid-cols-2 gap-3">
-                        <a href="https://www.salesforce.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=64" alt="Salesforce" class="w-7 h-7 rounded">
+                        <a href="https://www.salesforce.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=64" alt="Salesforce" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-blue-600">Salesforce</span>
                         </a>
-                        <a href="https://www.hubspot.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=64" alt="HubSpot" class="w-7 h-7 rounded">
+                        <a href="https://www.hubspot.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=hubspot.com&sz=64" alt="HubSpot" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-blue-600">HubSpot</span>
                         </a>
-                        <a href="https://www.insightly.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=insightly.com&sz=64" alt="Insightly" class="w-7 h-7 rounded">
+                        <a href="https://www.insightly.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=insightly.com&sz=64" alt="Insightly" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-blue-600">Insightly</span>
                         </a>
-                        <a href="https://dynamics.microsoft.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="MS Dynamics" class="w-7 h-7 rounded">
+                        <a href="https://dynamics.microsoft.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-blue-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=64" alt="MS Dynamics" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-blue-600">MS Dynamics</span>
                         </a>
                     </div>
@@ -278,24 +305,24 @@
                 <div>
                     <h3 class="font-bold text-sm uppercase tracking-wide text-slate-900 mb-5 pb-3 border-b-2 border-emerald-600">Sales Engagement &amp; Outbound</h3>
                     <div class="grid grid-cols-2 gap-3">
-                        <a href="https://www.outreach.io" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-emerald-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=outreach.io&sz=64" alt="Outreach" class="w-7 h-7 rounded">
+                        <a href="https://www.outreach.io" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-emerald-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=outreach.io&sz=64" alt="Outreach" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-emerald-600">Outreach</span>
                         </a>
-                        <a href="https://www.overloop.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-emerald-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=overloop.com&sz=64" alt="Overloop" class="w-7 h-7 rounded">
+                        <a href="https://www.overloop.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-emerald-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=overloop.com&sz=64" alt="Overloop" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-emerald-600">Overloop</span>
                         </a>
-                        <a href="https://www.apollo.io" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-emerald-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=apollo.io&sz=64" alt="Apollo" class="w-7 h-7 rounded">
+                        <a href="https://www.apollo.io" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-emerald-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=apollo.io&sz=64" alt="Apollo" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-emerald-600">Apollo</span>
                         </a>
-                        <a href="https://www.seamless.ai" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-emerald-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=seamless.ai&sz=64" alt="Seamless.AI" class="w-7 h-7 rounded">
+                        <a href="https://www.seamless.ai" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-emerald-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=seamless.ai&sz=64" alt="Seamless.AI" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-emerald-600">Seamless.AI</span>
                         </a>
-                        <a href="https://www.snitcher.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-emerald-300 hover:shadow transition group no-underline col-span-2">
-                            <img src="https://www.google.com/s2/favicons?domain=snitcher.com&sz=64" alt="Snitcher" class="w-7 h-7 rounded">
+                        <a href="https://www.snitcher.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-emerald-300 hover:shadow transition group no-underline col-span-2">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=snitcher.com&sz=64" alt="Snitcher" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-emerald-600">Snitcher.AI</span>
                         </a>
                     </div>
@@ -304,24 +331,24 @@
                 <div>
                     <h3 class="font-bold text-sm uppercase tracking-wide text-slate-900 mb-5 pb-3 border-b-2 border-purple-600">Google Suite</h3>
                     <div class="grid grid-cols-2 gap-3">
-                        <a href="https://docs.google.com/spreadsheets" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-purple-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Google" class="w-7 h-7 rounded">
+                        <a href="https://docs.google.com/spreadsheets" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-purple-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Google" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-purple-600">Sheets</span>
                         </a>
-                        <a href="https://docs.google.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-purple-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Google" class="w-7 h-7 rounded">
+                        <a href="https://docs.google.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-purple-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Google" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-purple-600">Docs</span>
                         </a>
-                        <a href="https://gemini.google.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-purple-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Google" class="w-7 h-7 rounded">
+                        <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-purple-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Google" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-purple-600">Gemini</span>
                         </a>
-                        <a href="https://analytics.google.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-purple-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Google" class="w-7 h-7 rounded">
+                        <a href="https://analytics.google.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-purple-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Google" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-purple-600">Analytics</span>
                         </a>
-                        <a href="https://ads.google.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-purple-300 hover:shadow transition group no-underline col-span-2">
-                            <img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Google" class="w-7 h-7 rounded">
+                        <a href="https://ads.google.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-purple-300 hover:shadow transition group no-underline col-span-2">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Google" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-purple-600">Google Ads</span>
                         </a>
                     </div>
@@ -330,16 +357,16 @@
                 <div>
                     <h3 class="font-bold text-sm uppercase tracking-wide text-slate-900 mb-5 pb-3 border-b-2 border-orange-500">Marketing, PPC &amp; Data</h3>
                     <div class="grid grid-cols-2 gap-3">
-                        <a href="https://www.capterra.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-orange-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=capterra.com&sz=64" alt="Capterra" class="w-7 h-7 rounded">
+                        <a href="https://www.capterra.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-orange-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=capterra.com&sz=64" alt="Capterra" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-orange-600">Capterra</span>
                         </a>
-                        <a href="https://www.g2.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-orange-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=g2.com&sz=64" alt="G2" class="w-7 h-7 rounded">
+                        <a href="https://www.g2.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-orange-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=g2.com&sz=64" alt="G2" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-orange-600">G2 Crowd</span>
                         </a>
-                        <a href="https://www.hotjar.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-orange-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=hotjar.com&sz=64" alt="Hotjar" class="w-7 h-7 rounded">
+                        <a href="https://www.hotjar.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-orange-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=hotjar.com&sz=64" alt="Hotjar" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-orange-600">Hotjar</span>
                         </a>
                         <div class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200">
@@ -352,16 +379,16 @@
                 <div>
                     <h3 class="font-bold text-sm uppercase tracking-wide text-slate-900 mb-5 pb-3 border-b-2 border-rose-600">Web Dev &amp; AI</h3>
                     <div class="grid grid-cols-2 gap-3">
-                        <a href="https://www.wordpress.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-rose-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=wordpress.com&sz=64" alt="WordPress" class="w-7 h-7 rounded">
+                        <a href="https://www.wordpress.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-rose-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=wordpress.com&sz=64" alt="WordPress" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-rose-600">WordPress</span>
                         </a>
-                        <a href="https://claude.ai" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-rose-300 hover:shadow transition group no-underline">
-                            <img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Claude" class="w-7 h-7 rounded">
+                        <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-rose-300 hover:shadow transition group no-underline">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Claude" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-rose-600">Claude Code</span>
                         </a>
-                        <a href="https://gemini.google.com" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-rose-300 hover:shadow transition group no-underline col-span-2">
-                            <img src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Gemini" class="w-7 h-7 rounded">
+                        <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-200 hover:border-rose-300 hover:shadow transition group no-underline col-span-2">
+                            <img loading="lazy" src="https://www.google.com/s2/favicons?domain=google.com&sz=64" alt="Gemini" class="w-7 h-7 rounded">
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-rose-600">Google Gemini</span>
                         </a>
                     </div>
@@ -385,7 +412,7 @@
                 <p class="text-blue-400">GTM Specialist</p>
                 <p class="text-slate-300"><a href="mailto:andyknox@saasguidesolutions.com" class="hover:text-blue-400 transition">andyknox@saasguidesolutions.com</a></p>
                 <div class="pt-6">
-                    <a href="https://www.linkedin.com/in/andy-knox-176a52a/" target="_blank" class="inline-flex items-center gap-3 bg-[#0A66C2] hover:bg-[#004182] text-white px-6 py-3 rounded-full transition text-lg font-semibold">
+                    <a href="https://www.linkedin.com/in/andy-knox-176a52a/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-[#0A66C2] hover:bg-[#004182] text-white px-6 py-3 rounded-full transition text-lg font-semibold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                         Connect on LinkedIn
                     </a>
@@ -397,7 +424,7 @@
     <footer class="py-10 text-center text-slate-400 text-sm">
         <a href="/book.html" class="text-blue-500 hover:text-blue-600 font-medium transition">Book a Call</a>
         <span class="mx-2">|</span>
-        <a href="/ANDY_KNOX_AI-AP2026-GEN.pdf" target="_blank" class="text-blue-500 hover:text-blue-600 font-medium transition">Resume</a>
+        <a href="/ANDY_KNOX_AI-AP2026-GEN.pdf" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-600 font-medium transition">Resume</a>
         <span class="mx-2">|</span>
         <a href="/privacy.html" class="text-blue-500 hover:text-blue-600 font-medium transition">Privacy</a>
         <span class="mx-2">|</span>
