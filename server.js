@@ -325,7 +325,8 @@ app.post('/submit-audit', async (req, res) => {
 
 // SpeedySheets Free Trial Form
 app.post('/submit-speedysheets', async (req, res) => {
-    const { name, email, is_contractor, industry, hates_timesheets, website_url, _formRenderedAt } = req.body;
+    const { name, email, is_contractor, industry, hates_timesheets, website_url, _formRenderedAt,
+            utm_source, utm_medium, utm_campaign, utm_content, utm_term, referrer, landing_page } = req.body;
 
     // Honeypot check
     if (website_url) {
@@ -404,20 +405,43 @@ app.post('/submit-speedysheets', async (req, res) => {
     const safeContractor = escapeHtml(is_contractor);
     const safeIndustry = escapeHtml(industry);
     const safeHate = escapeHtml(hates_timesheets);
+    const safeUtmSource = escapeHtml(utm_source);
+    const safeUtmMedium = escapeHtml(utm_medium);
+    const safeUtmCampaign = escapeHtml(utm_campaign);
+    const safeUtmContent = escapeHtml(utm_content);
+    const safeUtmTerm = escapeHtml(utm_term);
+    const safeReferrer = escapeHtml(referrer);
+    const safeLandingPage = escapeHtml(landing_page);
+
+    const hasUtm = safeUtmSource || safeUtmMedium || safeUtmCampaign;
+    const sourceBlock = hasUtm
+        ? `<hr style="border:none;border-top:1px solid #eee;margin:12px 0;">
+           <p style="font-size:13px;color:#666;"><strong>Traffic Source</strong></p>
+           ${safeUtmSource ? `<p style="font-size:12px;color:#888;"><strong>Source:</strong> ${safeUtmSource}</p>` : ''}
+           ${safeUtmMedium ? `<p style="font-size:12px;color:#888;"><strong>Medium:</strong> ${safeUtmMedium}</p>` : ''}
+           ${safeUtmCampaign ? `<p style="font-size:12px;color:#888;"><strong>Campaign:</strong> ${safeUtmCampaign}</p>` : ''}
+           ${safeUtmContent ? `<p style="font-size:12px;color:#888;"><strong>Content:</strong> ${safeUtmContent}</p>` : ''}
+           ${safeUtmTerm ? `<p style="font-size:12px;color:#888;"><strong>Keyword:</strong> ${safeUtmTerm}</p>` : ''}
+           ${safeReferrer ? `<p style="font-size:12px;color:#888;"><strong>Referrer:</strong> ${safeReferrer}</p>` : ''}
+           ${safeLandingPage ? `<p style="font-size:12px;color:#888;"><strong>Landing Page:</strong> ${safeLandingPage}</p>` : ''}`
+        : `<hr style="border:none;border-top:1px solid #eee;margin:12px 0;">
+           <p style="font-size:12px;color:#888;"><strong>Source:</strong> ${safeReferrer || 'Direct / Unknown'}</p>
+           ${safeLandingPage ? `<p style="font-size:12px;color:#888;"><strong>Landing Page:</strong> ${safeLandingPage}</p>` : ''}`;
 
     try {
         await resend.emails.send({
             from: 'SpeedySheets <andyknox@saasguidesolutions.com>',
             to: 'andyknox@saasguidesolutions.com',
-            subject: `SpeedySheets Free Trial Request: ${safeName}`,
+            subject: `New Speedy-Sheets signup: ${safeName}`,
             html: `
                 <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
-                    <h2 style="color: #16a34a;">SpeedySheets Trial Request</h2>
+                    <h2 style="color: #16a34a;">New Speedy-Sheets signup</h2>
                     <p><strong>Name:</strong> ${safeName}</p>
                     <p><strong>Email:</strong> ${safeEmail}</p>
                     <p><strong>Contractor:</strong> ${safeContractor}</p>
                     <p><strong>Industry:</strong> ${safeIndustry}</p>
                     <p><strong>Hates Timesheets:</strong> ${safeHate}/10</p>
+                    ${sourceBlock}
                 </div>
             `
         });

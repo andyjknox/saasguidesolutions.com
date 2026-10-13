@@ -175,6 +175,13 @@
                         <input type="text" name="website_url" tabindex="-1" autocomplete="off">
                     </div>
                     <input type="hidden" name="_formRenderedAt" id="ssFormRenderedAt">
+                    <input type="hidden" name="utm_source" id="ssUtmSource">
+                    <input type="hidden" name="utm_medium" id="ssUtmMedium">
+                    <input type="hidden" name="utm_campaign" id="ssUtmCampaign">
+                    <input type="hidden" name="utm_content" id="ssUtmContent">
+                    <input type="hidden" name="utm_term" id="ssUtmTerm">
+                    <input type="hidden" name="referrer" id="ssReferrer">
+                    <input type="hidden" name="landing_page" id="ssLandingPage">
                     <div>
                         <label class="block text-sm font-medium mb-1">Name</label>
                         <input type="text" name="name" required class="w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-blue-600 outline-none">
@@ -251,6 +258,30 @@
 
     <script>
         document.getElementById('ssFormRenderedAt').value = Date.now().toString();
+
+        // UTM + referrer capture
+        (function() {
+            const p = new URLSearchParams(window.location.search);
+            const fields = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+            fields.forEach(function(k) {
+                const el = document.getElementById('ss' + k.replace('utm_','Utm').replace(/^\w/, c => c.toUpperCase()).replace(/_(\w)/g, (_, c) => c.toUpperCase()));
+                if (el && p.get(k)) el.value = p.get(k);
+            });
+            // Persist UTMs in sessionStorage so they survive page navigations
+            fields.forEach(function(k) {
+                if (p.get(k)) sessionStorage.setItem(k, p.get(k));
+            });
+            // Fall back to sessionStorage if no UTM in URL
+            fields.forEach(function(k) {
+                const elMap = {utm_source:'ssUtmSource',utm_medium:'ssUtmMedium',utm_campaign:'ssUtmCampaign',utm_content:'ssUtmContent',utm_term:'ssUtmTerm'};
+                const el = document.getElementById(elMap[k]);
+                if (el && !el.value && sessionStorage.getItem(k)) el.value = sessionStorage.getItem(k);
+            });
+            const refEl = document.getElementById('ssReferrer');
+            if (refEl) refEl.value = document.referrer || '';
+            const lpEl = document.getElementById('ssLandingPage');
+            if (lpEl) lpEl.value = window.location.href;
+        })();
 
         const ssHateRange = document.getElementById('ssHateRange');
         const ssHateValue = document.getElementById('ssHateValue');
