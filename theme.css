@@ -21,6 +21,16 @@ nav{position:sticky;top:0;z-index:100;background:rgba(9,21,37,.92);backdrop-filt
 .nav-links a:hover{color:var(--fg)}
 .nav-cta{background:transparent;border:1px solid var(--accent);color:var(--accent) !important;padding:8px 18px;border-radius:6px;transition:background .2s,color .2s !important}
 .nav-cta:hover{background:var(--accent);color:#091525 !important}
+/* NAV DROPDOWNS */
+.nav-dropdown{position:relative}
+.nav-dropdown-trigger{display:inline-flex;align-items:center;gap:4px;cursor:default}
+.nav-dropdown-trigger svg{opacity:.6;transition:opacity .2s;flex-shrink:0}
+.nav-dropdown:hover .nav-dropdown-trigger svg{opacity:1}
+.nav-dropdown-menu{position:absolute;left:0;top:calc(100% + 2px);padding-top:6px;display:none;z-index:200;min-width:200px}
+.nav-dropdown:hover .nav-dropdown-menu{display:block}
+.nav-dropdown-inner{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,.55);padding:6px 0;overflow:hidden}
+.nav-dropdown-menu a{display:block;padding:9px 16px;font-size:13px;font-weight:500;letter-spacing:.03em;text-transform:none;color:var(--fg2);white-space:nowrap;transition:background .15s,color .15s}
+.nav-dropdown-menu a:hover{background:var(--bg3);color:var(--accent2)}
 @media(max-width:768px){.nav-links{display:none}}
 .logo-circle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:white;overflow:hidden;flex-shrink:0}
 .logo-circle img{width:32px;height:32px;object-fit:contain}
