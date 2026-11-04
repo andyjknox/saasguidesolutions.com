@@ -20,63 +20,73 @@
       gtag('config', 'G-B04VW67709');
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/theme.css">
 </head>
-<body class="bg-white text-slate-900 font-sans leading-tight">
+<body><style>
+html,body{background:#091525!important;color:#e8eef5!important}
+.bg-white,.bg-gray-50,.bg-gray-100{background:#0e1f34!important}
+.bg-slate-50{background:#132840!important}
+.bg-slate-100{background:#132840!important}
+.bg-slate-200{background:#1a3356!important}
+.bg-slate-800{background:#132840!important}
+.bg-slate-900{background:#091525!important}
+.bg-blue-50{background:rgba(58,168,200,.08)!important}
+.bg-blue-100{background:rgba(58,168,200,.12)!important}
+.bg-blue-600,.bg-\[\#0A66C2\]{background:#3aa8c8!important}
+.hover\:bg-blue-700:hover{background:#2d8fa8!important}
+.hover\:bg-blue-600:hover{background:#3aa8c8!important}
+.text-slate-900,.text-gray-900{color:#e8eef5!important}
+.text-slate-800{color:#d0dce8!important}
+.text-slate-700{color:#c0d0e0!important}
+.text-slate-600{color:#a0b4c8!important}
+.text-slate-500{color:#7fa3c4!important}
+.text-slate-400{color:#5a7a96!important}
+.text-slate-300{color:#c0d0e0!important}
+.text-blue-600,.text-blue-700{color:#3aa8c8!important}
+.text-blue-400,.text-blue-300{color:#5ec5e0!important}
+.text-blue-500{color:#3aa8c8!important}
+.text-green-600{color:#34c759!important}
+.border-slate-200{border-color:#1a3356!important}
+.border-slate-300{border-color:#244878!important}
+.border-slate-700{border-color:#244878!important}
+.border-blue-100{border-color:rgba(58,168,200,.2)!important}
+.border-b{border-color:#1a3356!important}
+input,textarea,select{background:#132840!important;border-color:#244878!important;color:#e8eef5!important}
+input::placeholder,textarea::placeholder{color:#3d6080!important}
+input:focus,textarea:focus,select:focus{border-color:#3aa8c8!important;box-shadow:0 0 0 2px rgba(58,168,200,.25)!important;outline:none!important}
+.ring-2,.focus\:ring-2:focus{box-shadow:0 0 0 2px rgba(58,168,200,.35)!important}
+.focus\:ring-blue-600:focus{box-shadow:0 0 0 2px rgba(58,168,200,.35)!important}
+.shadow-sm,.shadow-lg{box-shadow:0 4px 24px rgba(0,0,0,.4)!important}
+.divide-y>*+*{border-color:#1a3356!important}
+.hover\:bg-slate-50:hover,.hover\:bg-slate-800:hover{background:#132840!important}
+.hover\:bg-slate-900:hover{background:#0e1f34!important}
+.hover\:text-blue-600:hover{color:#3aa8c8!important}
+.hover\:text-blue-400:hover{color:#5ec5e0!important}
+.text-white{color:#e8eef5!important}
+h1,h2,h3,h4,h5,h6{color:#e8eef5}
+strong{color:#e8eef5}
+nav.p-6,nav.px-6{background:rgba(9,21,37,.92)!important;border-bottom:1px solid #1a3356}
+</style>
 
-    <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto relative z-50">
-        <a href="/" class="flex flex-col items-center no-underline">
-            <img src="https://www.saasguidesolutions.com/logo.png"
-                 alt="SaaS Guide Solutions"
-                 class="h-24 w-auto antialiased"
-                 style="image-rendering: -webkit-optimize-contrast; background-color: #f8fafc; mix-blend-mode: multiply;">
-        </a>
-        <button id="menuToggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle navigation menu">
-                <span class="w-6 h-0.5 bg-slate-900"></span>
-                <span class="w-6 h-0.5 bg-slate-900"></span>
-                <span class="w-6 h-0.5 bg-slate-900"></span>
-            </button>
-            <div class="hidden md:flex items-center gap-6">
-            <div class="relative group">
-                <a href="/services.html" class="font-medium text-slate-700 hover:text-blue-600 transition inline-flex items-center gap-1 py-2">Services <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></a>
-                <div class="absolute left-0 top-full pt-2 hidden group-hover:block">
-                    <div class="bg-white border border-slate-200 rounded-lg shadow-lg py-2 w-56">
-                        <a href="/services.html#core-services" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Core Services</a>
-                        <a href="/services.html#industries" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Industries Served</a>
-                        <a href="/services.html#engagement-models" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Engagement Models</a>
-                        <a href="/services.html#tech-stack" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Tech Stack Expertise</a>
-                    </div>
-                </div>
-            </div>
-            <div class="relative group">
-                <a href="/solutions.html" class="font-medium text-blue-600 inline-flex items-center gap-1 py-2">Solutions <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></a>
-                <div class="absolute left-0 top-full pt-2 hidden group-hover:block">
-                    <div class="bg-white border border-slate-200 rounded-lg shadow-lg py-2 w-56">
-                        <a href="/speedysheets.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">SpeedySheets</a>
-                        <a href="/whistler-intel.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Whistler Intel</a>
-                        <a href="/playbook.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Sales Playbook</a>
-                    </div>
-                </div>
-            </div>
-            <a href="/#audit" class="bg-blue-600 text-white px-5 py-2 rounded-md font-medium hover:bg-blue-700 transition">Get Audit</a>
-        </div>
-    </nav>
-    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4">
-        <div class="space-y-3">
-            <a href="/services.html" class="block font-medium text-slate-700 py-2">Services</a>
-            <a href="/services.html#core-services" class="block text-sm text-slate-500 pl-4">Core Services</a>
-            <a href="/services.html#industries" class="block text-sm text-slate-500 pl-4">Industries Served</a>
-            <a href="/services.html#engagement-models" class="block text-sm text-slate-500 pl-4">Engagement Models</a>
-            <a href="/services.html#tech-stack" class="block text-sm text-slate-500 pl-4">Tech Stack Expertise</a>
-            <a href="/solutions.html" class="block font-medium text-slate-700 py-2">Solutions</a>
-            <a href="/speedysheets.html" class="block text-sm text-slate-500 pl-4">SpeedySheets</a>
-            <a href="/whistler-intel.html" class="block text-sm text-slate-500 pl-4">Whistler Intel</a>
-            <a href="/playbook.html" class="block text-sm text-slate-500 pl-4">Sales Playbook</a>
-            <a href="/#audit" class="block bg-blue-600 text-white text-center px-5 py-2 rounded-md font-medium mt-3">Get Audit</a>
-        </div>
+    <!-- NAV -->
+<nav>
+  <div class="wrapper nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="logo-circle"><img src="/logo.png" alt="SGS logo" width="32" height="32"/></span>
+      SaaS Guide Solutions
+    </a>
+    <div class="nav-links">
+      <a href="/services.html">Services</a>
+      <a href="/solutions.html">Solutions</a>
+      <a href="/index.html#cases">Case Studies</a>
+      <a href="/index.html#audit" class="nav-cta">Get GTM Audit</a>
     </div>
-    <script>document.getElementById('menuToggle').addEventListener('click',function(){document.getElementById('mobileMenu').classList.toggle('hidden')});</script>
-
-    <!-- Hero -->
+  </div>
+</nav>
+</div>
+<!-- Hero -->
     <section class="max-w-4xl mx-auto px-6 py-16 text-center">
         <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
             Our <span class="text-blue-600">Solutions</span>
@@ -152,17 +162,22 @@
         </div>
     </section>
 
-    <footer class="py-10 text-center text-slate-400 text-sm">
-        <a href="/book.html" class="text-blue-500 hover:text-blue-600 font-medium transition">Book a Call</a>
-        <span class="mx-2">|</span>
-        <a href="/ANDY_KNOX_AI-AP2026-GEN.pdf" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-600 font-medium transition">Resume</a>
-        <span class="mx-2">|</span>
-        <a href="/privacy.html" class="text-blue-500 hover:text-blue-600 font-medium transition">Privacy</a>
-        <span class="mx-2">|</span>
-        <a href="/terms.html" class="text-blue-500 hover:text-blue-600 font-medium transition">Terms</a>
-        <span class="mx-2">|</span>
-        &copy; 2026 SaaS Guide Solutions. All rights reserved.
-    </footer>
+    <footer>
+  <div class="wrapper footer-inner">
+    <a href="/" class="footer-logo">
+      <span class="logo-circle-sm"><img src="/logo.png" alt="SGS logo" width="24" height="24"/></span>
+      SaaS Guide Solutions
+    </a>
+    <div class="footer-links">
+      <a href="/services.html">Services</a>
+      <a href="/speedysheets.html">SpeedySheets</a>
+      <a href="/book.html">Book a Call</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </div>
+    <span class="footer-copy">© 2026 SaaS Guide Solutions</span>
+  </div>
+</footer>
 
 </body>
 </html>
