@@ -1,431 +1,1001 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SaaS Guide Solutions | RevOps & GTM</title>
-    <meta name="description" content="GTM consulting and RevOps architecture for SaaS companies. Scale revenue from $1M to $20M ARR with proven sales playbooks, CRM automation, and pipeline optimization.">
-    <meta property="og:title" content="SaaS Guide Solutions | GTM Consulting & RevOps">
-    <meta property="og:description" content="GTM strategy, RevOps architecture, and sales enablement for SaaS companies. 15+ years scaling B2B revenue.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.saasguidesolutions.com/">
-    <meta property="og:image" content="https://www.saasguidesolutions.com/logo.png">
-    <link rel="canonical" href="https://www.saasguidesolutions.com/">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B04VW67709"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-B04VW67709');
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "SaaS Guide Solutions",
-      "url": "https://www.saasguidesolutions.com",
-      "logo": "https://www.saasguidesolutions.com/logo.png",
-      "description": "GTM consulting, RevOps architecture, and sales enablement for SaaS companies.",
-      "founder": {
-        "@type": "Person",
-        "name": "Andy Knox",
-        "jobTitle": "GTM Specialist",
-        "url": "https://www.linkedin.com/in/andy-knox-176a52a/"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/andy-knox-176a52a/"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "andyknox@saasguidesolutions.com",
-        "contactType": "sales"
-      }
-    }
-    </script>
-</head>
-<body class="bg-white text-slate-900 font-sans leading-tight">
+<title>SaaS Guide Solutions — Dark</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@300;400;500;600&display=swap">
 
-    <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto relative z-50">
-        <a href="/" class="flex flex-col items-center no-underline">
-            <img src="https://www.saasguidesolutions.com/logo.png"
-                 alt="SaaS Guide Solutions"
-                 class="h-24 w-auto antialiased"
-                 style="image-rendering: -webkit-optimize-contrast; background-color: #f8fafc; mix-blend-mode: multiply;">
-        </a>
-        <button id="menuToggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle navigation menu">
-                <span class="w-6 h-0.5 bg-slate-900"></span>
-                <span class="w-6 h-0.5 bg-slate-900"></span>
-                <span class="w-6 h-0.5 bg-slate-900"></span>
-            </button>
-            <div class="hidden md:flex items-center gap-6">
-            <div class="relative group">
-                <a href="/services.html" class="font-medium text-slate-700 hover:text-blue-600 transition inline-flex items-center gap-1 py-2">Services <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></a>
-                <div class="absolute left-0 top-full pt-2 hidden group-hover:block">
-                    <div class="bg-white border border-slate-200 rounded-lg shadow-lg py-2 w-56">
-                        <a href="/services.html#core-services" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Core Services</a>
-                        <a href="/services.html#industries" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Industries Served</a>
-                        <a href="/services.html#engagement-models" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Engagement Models</a>
-                        <a href="/services.html#tech-stack" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Tech Stack Expertise</a>
-                    </div>
-                </div>
-            </div>
-            <div class="relative group">
-                <a href="/solutions.html" class="font-medium text-slate-700 hover:text-blue-600 transition inline-flex items-center gap-1 py-2">Solutions <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></a>
-                <div class="absolute left-0 top-full pt-2 hidden group-hover:block">
-                    <div class="bg-white border border-slate-200 rounded-lg shadow-lg py-2 w-56">
-                        <a href="/speedy-sheets.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">SpeedySheets</a>
-                        <a href="/whistler-intel.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Whistler Intel</a>
-                        <a href="/playbook.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600">Sales Playbook</a>
-                    </div>
-                </div>
-            </div>
-            <a href="#audit" class="bg-blue-600 text-white px-5 py-2 rounded-md font-medium hover:bg-blue-700 transition">Get Audit</a>
-        </div>
-    </nav>
-    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4">
-        <div class="space-y-3">
-            <a href="/services.html" class="block font-medium text-slate-700 py-2">Services</a>
-            <a href="/services.html#core-services" class="block text-sm text-slate-500 pl-4">Core Services</a>
-            <a href="/services.html#industries" class="block text-sm text-slate-500 pl-4">Industries Served</a>
-            <a href="/services.html#engagement-models" class="block text-sm text-slate-500 pl-4">Engagement Models</a>
-            <a href="/services.html#tech-stack" class="block text-sm text-slate-500 pl-4">Tech Stack Expertise</a>
-            <a href="/solutions.html" class="block font-medium text-slate-700 py-2">Solutions</a>
-            <a href="/speedy-sheets.html" class="block text-sm text-slate-500 pl-4">SpeedySheets</a>
-            <a href="/whistler-intel.html" class="block text-sm text-slate-500 pl-4">Whistler Intel</a>
-            <a href="/playbook.html" class="block text-sm text-slate-500 pl-4">Sales Playbook</a>
-            <a href="/#audit" class="block bg-blue-600 text-white text-center px-5 py-2 rounded-md font-medium mt-3">Get Audit</a>
-        </div>
+<style>
+/*
+  Layout: dark navy editorial — mountain/wave motifs, Raleway display, glacier-teal accent
+  Palette: deep BC coast navy + glacier teal + muted warm white
+  Type: Raleway (display/nav) + Source Sans 3 (body)
+*/
+:root {
+  --bg:        #091525;
+  --bg2:       #0e1f34;
+  --bg3:       #132840;
+  --border:    #1a3356;
+  --border2:   #244878;
+  --fg:        #e8eef5;
+  --fg2:       #7fa3c4;
+  --fg3:       #3d6080;
+  --accent:    #3aa8c8;
+  --accent2:   #5ec5e0;
+  --accent-bg: rgba(58,168,200,.1);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-left: max(28px, env(safe-area-inset-left,0px));
+  padding-right: max(28px, env(safe-area-inset-right,0px));
+}
+
+.eyebrow {
+  font-family: 'Raleway', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 100;
+  background: rgba(9,21,37,.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 20px;
+}
+.nav-logo {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-logo img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+.nav-logo-fallback {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+}
+/* Mountain icon for nav fallback */
+.nav-logo-fallback svg { width: 36px; height: 36px; }
+
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a {
+  font-family: 'Raleway', sans-serif;
+  font-size: 13px; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--fg2); text-decoration: none;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--fg); }
+.nav-cta {
+  background: transparent !important;
+  color: var(--accent) !important;
+  border: 1.5px solid var(--accent) !important;
+  padding: 8px 20px;
+  border-radius: 3px;
+  transition: background .2s, color .2s !important;
+}
+.nav-cta:hover { background: var(--accent) !important; color: var(--bg) !important; }
+
+@media (max-width: 700px) {
+  .nav-links { display: none; }
+  .nav-mobile-cta { display: flex !important; }
+}
+.nav-mobile-cta {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-family: 'Raleway', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  padding-block: 110px 90px;
+  overflow: hidden;
+}
+/* Layered mountain silhouette */
+.hero-mountains {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 55%;
+  pointer-events: none;
+  opacity: .18;
+}
+/* Radial glow */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 60% at 85% 30%, rgba(58,168,200,.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 2; max-width: 780px; }
+.hero h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: clamp(44px, 7vw, 82px);
+  line-height: 1.03;
+  letter-spacing: -.02em;
+  text-wrap: balance;
+  margin: 16px 0 26px;
+  color: var(--fg);
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero-sub {
+  font-size: 19px;
+  font-weight: 300;
+  color: var(--fg2);
+  max-width: 580px;
+  margin: 0 0 42px;
+  line-height: 1.65;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.btn-primary {
+  display: inline-block;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 14px 30px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background .2s;
+}
+.btn-primary:hover { background: var(--accent2); }
+.btn-ghost {
+  display: inline-block;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--fg2);
+  padding: 14px 20px;
+  text-decoration: none;
+  transition: color .2s;
+}
+.btn-ghost:hover { color: var(--fg); }
+
+/* ── WAVE DIVIDER ── */
+.wave-divider {
+  display: block;
+  width: 100%;
+  height: 56px;
+  margin: 0;
+  overflow: hidden;
+  line-height: 0;
+}
+.wave-divider svg { display: block; width: 100%; height: 100%; }
+
+/* ── STAT STRIP ── */
+.stat-strip {
+  background: var(--bg2);
+  padding-block: 52px;
+}
+.stat-strip-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.stat-item {
+  text-align: center;
+  padding: 0 20px;
+  border-right: 1px solid var(--border);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 1;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+.stat-num-accent { color: var(--accent); }
+.stat-label { font-size: 13px; color: var(--fg3); margin-top: 8px; line-height: 1.4; letter-spacing: .04em; }
+
+@media (max-width: 600px) {
+  .stat-strip-inner { grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+  .stat-item { background: var(--bg2); border-right: none; padding: 20px; }
+}
+
+/* ── PILLARS ── */
+.pillars { padding-block: 90px; }
+.section-head { margin-bottom: 56px; }
+.section-head h2 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.1;
+  margin: 12px 0 16px;
+  letter-spacing: -.01em;
+}
+.section-head p { font-size: 17px; font-weight: 300; color: var(--fg2); max-width: 520px; margin: 0; }
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.pillar {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 36px 30px 32px;
+  position: relative;
+  transition: border-color .2s;
+}
+.pillar:hover { border-color: var(--border2); }
+.pillar-icon {
+  width: 44px; height: 44px;
+  margin-bottom: 20px;
+  color: var(--accent);
+  opacity: .8;
+}
+.pillar h3 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: .02em;
+  margin: 0 0 10px;
+}
+.pillar p { color: var(--fg2); font-size: 15px; font-weight: 300; line-height: 1.65; margin: 0; }
+.pillar-link {
+  display: inline-block;
+  margin-top: 18px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  transition: color .15s;
+}
+.pillar-link:hover { color: var(--accent2); }
+
+@media (max-width: 720px) { .pillars-grid { grid-template-columns: 1fr; } }
+
+/* ── FRAMEWORK ── */
+.framework {
+  background: var(--bg2);
+  padding-block: 84px;
+}
+.framework-stages {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 48px;
+}
+.stage {
+  background: var(--bg2);
+  padding: 32px 24px;
+}
+.stage-active { background: var(--accent-bg); }
+.stage-label {
+  font-family: 'Raleway', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--fg3); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.stage-active .stage-label { color: var(--accent); }
+.stage-label::before {
+  content: '';
+  display: inline-block;
+  width: 20px; height: 1.5px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.stage h4 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700; font-size: 17px;
+  margin: 0 0 14px;
+}
+.stage ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.stage ul li { font-size: 13px; font-weight: 300; color: var(--fg2); padding-left: 16px; position: relative; }
+.stage ul li::before { content: '—'; position: absolute; left: 0; color: var(--fg3); font-size: 11px; }
+.stage-active ul li::before { color: var(--accent); }
+
+@media (max-width: 720px) { .framework-stages { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .framework-stages { grid-template-columns: 1fr; } }
+
+/* ── CASE STUDIES ── */
+.cases { padding-block: 90px; }
+.case-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 200px;
+}
+.case-body { padding: 40px; }
+.case-tag {
+  display: inline-block;
+  font-family: 'Raleway', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent-bg);
+  background: var(--accent-bg);
+  padding: 4px 10px; border-radius: 2px;
+  margin-bottom: 16px;
+}
+.case-body h3 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800; font-size: 24px;
+  margin: 0 0 4px; letter-spacing: -.01em;
+}
+.case-body .case-sub { font-size: 13px; color: var(--fg3); margin: 0 0 22px; font-weight: 400; }
+.case-results { display: flex; flex-direction: column; gap: 10px; }
+.case-result-row {
+  display: grid; grid-template-columns: 20px 1fr;
+  gap: 8px; font-size: 14px; font-weight: 300; color: var(--fg2);
+}
+.case-result-row::before { content: '✓'; color: var(--accent); font-weight: 700; }
+.case-result-row strong { color: var(--fg); font-weight: 500; }
+.case-metrics {
+  background: var(--bg3);
+  border-left: 1px solid var(--border);
+  padding: 40px 24px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 22px;
+}
+.case-metric { text-align: center; }
+.case-metric-num {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800; font-size: 34px;
+  color: var(--accent); line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.case-metric-label { font-size: 11px; color: var(--fg3); letter-spacing: .1em; text-transform: uppercase; margin-top: 4px; }
+.case-sep { width: 24px; height: 1px; background: var(--border); }
+
+@media (max-width: 680px) {
+  .case-card { grid-template-columns: 1fr; }
+  .case-metrics { flex-direction: row; border-left: none; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 16px 24px; }
+}
+
+/* ── TESTIMONIAL ── */
+.testimonial-section {
+  padding-block: 90px;
+  background: var(--bg2);
+  position: relative;
+  overflow: hidden;
+}
+/* Subtle mountain watermark */
+.testimonial-section::after {
+  content: '';
+  position: absolute;
+  right: -60px; bottom: -20px;
+  width: 420px; height: 280px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 420 280' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,280 140,80 220,160 310,20 420,280' fill='%231a3356' opacity='.5'/%3E%3Cpolygon points='60,280 200,110 280,180 370,50 420,280' fill='%230e1f34' opacity='.8'/%3E%3C/svg%3E") no-repeat center;
+  background-size: contain;
+  pointer-events: none;
+  opacity: .5;
+}
+.testimonial-inner { max-width: 760px; position: relative; z-index: 1; }
+.quote-mark {
+  font-family: 'Raleway', sans-serif;
+  font-size: 100px; line-height: .8;
+  color: var(--accent); opacity: .25;
+  display: block;
+  margin-bottom: -12px;
+}
+.quote-text {
+  font-size: clamp(17px, 2.4vw, 20px);
+  font-weight: 300;
+  color: var(--fg2);
+  line-height: 1.7;
+  margin: 0 0 32px;
+}
+.quote-text strong { color: var(--fg); font-weight: 500; }
+.quote-attr {
+  display: flex; align-items: center; gap: 16px;
+}
+.quote-attr-line {
+  width: 32px; height: 1.5px; background: var(--accent); flex-shrink: 0;
+}
+.quote-attr-name {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700; font-size: 15px; letter-spacing: .04em;
+  color: var(--fg); margin-bottom: 2px;
+}
+.quote-attr-title { font-size: 13px; color: var(--fg3); }
+
+/* ── AUDIT CTA ── */
+.audit-section {
+  padding-block: 100px;
+  position: relative; overflow: hidden;
+}
+.audit-mountains {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60%;
+  pointer-events: none;
+  opacity: .07;
+}
+.audit-inner { position: relative; z-index: 1; max-width: 620px; }
+.audit-inner h2 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: clamp(36px, 5.5vw, 60px);
+  line-height: 1.08; letter-spacing: -.02em;
+  margin: 12px 0 20px;
+  text-wrap: balance;
+}
+.audit-inner h2 em { font-style: normal; color: var(--accent); }
+.audit-inner p { font-size: 17px; font-weight: 300; color: var(--fg2); margin: 0 0 36px; }
+.audit-checklist { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+.audit-check {
+  display: grid; grid-template-columns: 20px 1fr;
+  gap: 10px; font-size: 15px; font-weight: 300; color: var(--fg2);
+  align-items: start;
+}
+.audit-check::before {
+  content: '✓';
+  color: var(--accent); font-weight: 700;
+}
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding-block: 40px; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.footer-logo {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800; font-size: 15px;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--fg2); text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.footer-logo img { height: 32px; width: auto; opacity: .7; }
+.footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+.footer-links a { font-size: 13px; color: var(--fg3); text-decoration: none; letter-spacing: .03em; }
+.footer-links a:hover { color: var(--fg2); }
+.footer-copy { font-size: 13px; color: var(--fg3); }
+
+.logo-circle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: white; overflow: hidden; flex-shrink: 0;
+}
+.logo-circle img { width: 32px; height: 32px; object-fit: contain; }
+.logo-circle-sm {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: white; overflow: hidden; flex-shrink: 0; opacity: 0.65;
+}
+.logo-circle-sm img { width: 24px; height: 24px; object-fit: contain; }
+
+.hero-grid { display: grid; grid-template-columns: 1fr 420px; gap: 56px; align-items: center; }
+@media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } .hero-visual { display: none; } }
+.hero-visual { position: relative; }
+.audit-card {
+  background: rgba(14,31,52,0.9);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  padding: 28px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 28px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(58,168,200,0.1);
+  position: relative;
+}
+.audit-badge {
+  position: absolute; top: -13px; left: 28px;
+  background: var(--accent); color: #091525;
+  font-size: 11px; font-weight: 800; letter-spacing: .07em;
+  padding: 4px 12px; border-radius: 20px; text-transform: uppercase;
+}
+.audit-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 22px; gap: 16px; }
+.audit-card-title { font-size: 13px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--fg2); padding-top: 4px; }
+.audit-score { text-align: right; }
+.audit-score-num { font-size: 36px; font-weight: 900; color: var(--accent2); font-family: 'Raleway',sans-serif; line-height: 1; }
+.audit-score-label { font-size: 11px; color: var(--fg3); margin-top: 2px; }
+.audit-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.audit-item { display: flex; align-items: center; gap: 12px; padding: 11px 14px; border-radius: 10px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); }
+.audit-dot { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.dot-ok   { background: rgba(52,199,89,.15);  color: #34c759; }
+.dot-warn { background: rgba(255,159,10,.15); color: #ff9f0a; }
+.dot-crit { background: rgba(255,69,58,.15);  color: #ff453a; }
+.audit-item-label { flex: 1; font-size: 14px; color: var(--fg); }
+.audit-item-tag { font-size: 11px; font-weight: 700; letter-spacing: .04em; padding: 3px 8px; border-radius: 6px; }
+.tag-ok   { background: rgba(52,199,89,.12);  color: #34c759; }
+.tag-warn { background: rgba(255,159,10,.12); color: #ff9f0a; }
+.tag-crit { background: rgba(255,69,58,.12);  color: #ff453a; }
+.audit-footer { text-align: center; }
+.audit-footer-note { font-size: 12px; color: var(--fg3); margin-top: 8px; }
+</style>
+
+<!-- NAV -->
+<nav>
+  <div class="wrapper nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="logo-circle"><img src="/logo.png" alt="SGS logo" width="32" height="32"/></span>
+      SaaS Guide Solutions
+    </a>
+    <div class="nav-links">
+      <a href="/services.html">Services</a>
+      <a href="/solutions.html">Solutions</a>
+      <a href="#cases">Case Studies</a>
+      <a href="#" class="nav-cta">Get GTM Audit</a>
     </div>
-    <script>document.getElementById('menuToggle').addEventListener('click',function(){document.getElementById('mobileMenu').classList.toggle('hidden')});</script>
+    <a href="#" class="nav-mobile-cta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      Menu
+    </a>
+  </div>
+</nav>
 
-    <main class="max-w-4xl mx-auto px-6 py-20 text-center">
-        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
-            (Re)Build a revenue engine <br><span class="text-blue-600">that will scale.</span>
-        </h1>
-        <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
-            We bridge the gap between GTM strategy and technical execution for high-growth SaaS companies.
-        </p>
-        <div class="flex justify-center gap-4">
-            <a href="#audit" class="border-2 border-slate-900 px-8 py-3 rounded font-bold hover:bg-slate-900 hover:text-white transition">Get GTM Audit</a>
+<!-- HERO -->
+<section class="hero">
+  <!-- Mountain silhouette -->
+  <svg class="hero-mountains" viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,320 180,100 320,210 500,40 680,180 820,80 1000,220 1200,60 1440,160 1440,320" fill="#1a3356"/>
+    <polygon points="0,320 220,150 400,240 580,90 760,200 940,110 1120,250 1300,100 1440,200 1440,320" fill="#0e1f34"/>
+    <polygon points="0,320 100,220 280,300 460,180 620,280 800,170 1020,290 1200,190 1440,260 1440,320" fill="#091525"/>
+  </svg>
+
+  <div class="wrapper">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <p class="eyebrow">GTM Consulting &amp; RevOps Architecture</p>
+        <h1>(Re)Build a revenue engine<br>that will <em>scale.</em></h1>
+        <p class="hero-sub">We bridge the gap between GTM strategy and technical execution for high-growth SaaS companies — from $1M to $20M ARR.</p>
+        <div class="hero-actions">
+          <a href="#audit" class="btn-primary">Get Your Free GTM Audit</a>
+          <a href="#cases" class="btn-ghost">View Case Studies →</a>
         </div>
-    </main>
-
-    <section class="bg-slate-50  py-20 border-y border-slate-200">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
-            <div>
-                <h3 class="font-bold text-lg mb-2">RevOps Architecture</h3>
-                <p class="text-slate-500">End-to-end CRM design that eliminates data silos and manual entry.</p>
+      </div>
+      <div class="hero-visual">
+        <div class="audit-card">
+          <span class="audit-badge">Free Audit Preview</span>
+          <div class="audit-card-header">
+            <span class="audit-card-title">GTM Health Score</span>
+            <div class="audit-score">
+              <div class="audit-score-num">62<span style="font-size:18px;color:var(--fg3);font-weight:400">/100</span></div>
+              <div class="audit-score-label">Needs Work</div>
             </div>
-            <div>
-                <h3 class="font-bold text-lg mb-2">GTM Execution</h3>
-                <p class="text-slate-500">Practical Playbooks for lead routing, scoring, and sales enablement.</p>
-                <a href="/speedy-sheets.html" class="text-blue-600 text-sm font-medium hover:underline mt-2 inline-block">Try SpeedySheets &rarr;</a>
+          </div>
+          <div class="audit-items">
+            <div class="audit-item">
+              <span class="audit-dot dot-ok">✓</span>
+              <span class="audit-item-label">RevOps Stack</span>
+              <span class="audit-item-tag tag-ok">Healthy</span>
             </div>
-            <div>
-                <h3 class="font-bold text-lg mb-2">Clean Reporting</h3>
-                <p class="text-slate-500">Real-time dashboards that show exactly where your pipeline is stalling.</p>
+            <div class="audit-item">
+              <span class="audit-dot dot-warn">!</span>
+              <span class="audit-item-label">Lead Routing</span>
+              <span class="audit-item-tag tag-warn">Gaps Found</span>
             </div>
+            <div class="audit-item">
+              <span class="audit-dot dot-crit">✕</span>
+              <span class="audit-item-label">ICP Definition</span>
+              <span class="audit-item-tag tag-crit">Critical</span>
+            </div>
+            <div class="audit-item">
+              <span class="audit-dot dot-warn">!</span>
+              <span class="audit-item-label">Pipeline Coverage</span>
+              <span class="audit-item-tag tag-warn">Needs Fix</span>
+            </div>
+          </div>
+          <div class="audit-footer">
+            <a href="#audit" class="btn-primary" style="display:block;text-align:center">Get Your Free GTM Audit</a>
+            <p class="audit-footer-note">Takes 5 minutes · No commitment required</p>
+          </div>
         </div>
-    </section>
-
-    <!-- Results -->
-    <section class="py-20">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-4">Proven Results</h2>
-            <p class="text-slate-500 text-center mb-12 max-w-2xl mx-auto">Real outcomes from real engagements. Not theory — execution.</p>
-
-            <div class="grid md:grid-cols-4 gap-6 mb-16 text-center">
-                <div class="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                    <p class="text-4xl font-extrabold text-blue-600">20x</p>
-                    <p class="text-sm text-slate-500 mt-2">Revenue Scaled<br>$1M to $20M ARR</p>
-                </div>
-                <div class="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                    <p class="text-4xl font-extrabold text-blue-600">30 Day</p>
-                    <p class="text-sm text-slate-500 mt-2">Guarantee to see <br>Revenu Results</p>
-                </div>
-                <div class="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                    <p class="text-4xl font-extrabold text-blue-600">$25M ARR</p>
-                    <p class="text-sm text-slate-500 mt-2">Personal Revenue<br>While Managing Team</p>
-                </div>
-                <div class="bg-slate-50 border border-slate-200 rounded-lg p-6">
-                    <p class="text-4xl font-extrabold text-blue-600">4</p>
-                    <p class="text-sm text-slate-500 mt-2">Acquisitions Led<br>+ 2 Exits as Owner</p>
-                </div>
-            </div>
-
-            <!-- Case Study 1: Degama -->
-            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden mb-8">
-                <div class="md:flex">
-                    <div class="md:w-2/3 p-8">
-                        <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-4">Case Study</span>
-                        <h3 class="text-xl font-bold mb-1">Degama Systems</h3>
-                        <p class="text-slate-400 text-sm mb-4">Transportation SaaS | Legacy to SaaS Transformation</p>
-                        <div class="space-y-3 text-slate-600 text-sm">
-                            <div class="flex items-start gap-2">
-                                <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                                <span><strong>Scale &amp; Acquisition:</strong> Grew revenue 10x ($500K to $5M ARR), transitioned legacy platforms to SaaS, and positioned the company for acquisition by a strategic partner.</span>
-                            </div>
-                            <!--<div class="flex items-start gap-2">
-                    
-                                <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                                <span><strong>Record Deal:</strong> Personally closed a $1.3M complex deal involving custom development — the largest in company history.</span>
-                            </div>-->
-                            <div class="flex items-start gap-2">
-                                <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                                <span><strong>M&amp;A Leadership:</strong> Co-led a 25-person cross-functional team through the successful M&amp;A process.</span>
-                            </div>
-                          <!--  <div class="flex items-start gap-2">
-                                <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                                <span><strong>Re-hired for Round 2:</strong> Brought back to drive SaaS sales &amp; service growth, leading the company to a second acquisition by a technology partner (October 2024).</span>
-                            </div>-->
-                            <div class="flex items-start gap-2">
-                                <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                                <span><strong>Sales Ops &amp; Lead Gen:</strong> Rebuilt outbound/inbound methodologies, implemented CRM automation, and drove lead generation via SEO, AI blogging, and PPC.</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="md:w-1/3 bg-slate-50 p-8 flex flex-col justify-center border-t md:border-t-0 md:border-l border-slate-200">
-                        <div class="space-y-4 text-center">
-                            <div>
-                                <p class="text-3xl font-extrabold text-blue-600">$500K</p>
-                                <p class="text-xs text-slate-400 uppercase tracking-wide">to $5M ARR</p>
-                            </div>
-                            <div class="border-t border-slate-200 pt-4">
-                                <p class="text-3xl font-extrabold text-blue-600">2x</p>
-                                <p class="text-xs text-slate-400 uppercase tracking-wide">Acquisitions</p>
-                            </div>
-                            <div class="border-t border-slate-200 pt-4">
-                                <p class="text-3xl font-extrabold text-blue-600">$1.3M</p>
-                                <p class="text-xs text-slate-400 uppercase tracking-wide">Record Deal</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Case Study 2: Unnamed Mining/Construction SaaS -->
-            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden mb-8">
-                <div class="md:flex">
-                    <div class="md:w-2/3 p-8">
-                        <span class="inline-block bg-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-4">Case Study</span>
-                        <h3 class="text-xl font-bold mb-1">Global Mining &amp; Construction SaaS</h3>
-                        <p class="text-slate-400 text-sm mb-4">Enterprise SaaS | Sales Restructuring &amp; Global Expansion</p>
-                        <div class="space-y-3 text-slate-600 text-sm">
-                            <div class="flex items-start gap-2">
-                                <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                                <span><strong>Team Restructuring:</strong> Led a major sales department overhaul — hired 6 new reps and sales ops, built a systematic team with deep industry experience.</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                                <span><strong>Partnership Growth:</strong> Achieved 100% of key partnership goals, securing major resellers including Hexagon and Sumitomo while managing legacy partner exits.</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                                <span><strong>Global Expansion:</strong> Drove business development with partners across Australia, LATAM, the US, and Europe.</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                                <span><strong>Tech Stack Optimization:</strong> Tightened Salesforce processes, integrated HubSpot and ZoomInfo for automated reporting and lead generation.</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <span class="text-blue-600 font-bold mt-0.5">&#10003;</span>
-                                <span><strong>Direct Revenue:</strong> Personally generated $25M ARR in sales while simultaneously managing the broader sales organization.</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="md:w-1/3 bg-slate-50 p-8 flex flex-col justify-center border-t md:border-t-0 md:border-l border-slate-200">
-                        <div class="space-y-4 text-center">
-                            <div>
-                                <p class="text-3xl font-extrabold text-blue-600">$25M</p>
-                                <p class="text-xs text-slate-400 uppercase tracking-wide">Personal Revenue</p>
-                            </div>
-                            <div class="border-t border-slate-200 pt-4">
-                                <p class="text-3xl font-extrabold text-blue-600">120%</p>
-                                <p class="text-xs text-slate-400 uppercase tracking-wide">Sales Runrate</p>
-                            </div>
-                            <div class="border-t border-slate-200 pt-4">
-                                <p class="text-3xl font-extrabold text-blue-600">100%</p>
-                                <p class="text-xs text-slate-400 uppercase tracking-wide">Partnership Goals</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonial -->
-            <div class="bg-blue-50 border border-blue-100 rounded-xl p-8 max-w-3xl mx-auto">
-                <div class="flex items-start gap-4">
-                    <div class="text-blue-300 flex-shrink-0">
-                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983z"/></svg>
-                    </div>
-                    <div>
-                        <p class="text-slate-700 text-lg leading-relaxed mb-4">SaaS Guide made a huge contribution to Degama, by transforming our strategy to one based on inbound lead generation via AI, SEO, social media, and other techniques and tools. They also spearheaded the transformation of our sales model from traditional on-premise to SaaS, and was very successful in managing prospects from inception to close, and maintaining close contact afterwards. Also, Andy a great team player, and promoted cohesion and camaraderie within our company. I highly recommend the SGS Team.</p>
-                        <div>
-                            <p class="font-bold text-slate-900">Tom Greenwood</p>
-                            <p class="text-slate-500 text-sm">President and Founder, Degama Systems</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="audit" class="max-w-xl mx-auto py-20 px-6">
-        <div class="bg-white p-8 rounded-lg shadow-sm border border-slate-200">
-            <h2 class="text-2xl font-bold mb-2 text-center">Get Your GTM Audit</h2>
-            <p class="text-slate-500 text-sm text-center mb-8">Book a 30-minute discovery call. We'll assess your sales, marketing, ops, and tech stack — and show you where AI and automation can drive results.</p>
-
-            <a href="/book.html" class="flex items-center justify-center gap-3 w-full bg-blue-600 text-white font-bold py-4 rounded-lg hover:bg-blue-700 transition text-lg">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                Book a Discovery Call
-            </a>
-
-            <div class="text-center mt-6 pt-6 border-t border-slate-200">
-                <p class="text-slate-500 text-sm mb-3">Not ready for a call?</p>
-                <p class="text-slate-400 text-xs mb-4">Download our SaaS Ops Checklist — covers sales, marketing, lead gen, CS, churn KPIs, and tech stack assessment.</p>
-
-                <!-- Download gate form -->
-                <div id="downloadGate">
-                    <form id="downloadForm" class="flex gap-2 max-w-sm mx-auto" novalidate>
-                        <div class="flex-1 relative">
-                            <input type="email" id="dlEmail" placeholder="Your email address" required class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none text-sm">
-                            <p id="dlEmailError" class="text-red-600 text-xs mt-1 hidden absolute"></p>
-                        </div>
-                        <button type="submit" class="bg-slate-900 text-white px-4 py-2.5 rounded-lg font-semibold text-sm hover:bg-slate-800 transition whitespace-nowrap">
-                            <svg class="w-4 h-4 inline -mt-0.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                            Download
-                        </button>
-                    </form>
-                </div>
-                <div id="downloadSuccess" class="hidden">
-                    <p class="text-green-600 font-semibold text-sm mb-2">Your download is ready!</p>
-                    <a href="/gtm-audit-discovery.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-slate-800 transition">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                        Open SaaS Ops Checklist
-                    </a>
-                    <p class="text-slate-400 text-xs mt-2">Use Print / Save PDF button on the checklist page</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Download gate form
-        document.getElementById('downloadForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const emailEl = document.getElementById('dlEmail');
-            const errorEl = document.getElementById('dlEmailError');
-            const email = emailEl.value.trim();
-
-            errorEl.classList.add('hidden');
-            emailEl.classList.remove('border-red-500');
-
-            if (!email) {
-                errorEl.textContent = 'Email is required to download.';
-                errorEl.classList.remove('hidden');
-                emailEl.classList.add('border-red-500');
-                return;
-            }
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                errorEl.textContent = 'Please enter a valid email address.';
-                errorEl.classList.remove('hidden');
-                emailEl.classList.add('border-red-500');
-                return;
-            }
-
-            const btn = this.querySelector('button');
-            btn.disabled = true;
-            btn.textContent = 'Sending...';
-
-            try {
-                await fetch('/submit-download', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        email: email,
-                        document: 'SaaS Ops Checklist',
-                        referrer: document.referrer || 'direct',
-                        page: window.location.href,
-                        screenRes: screen.width + 'x' + screen.height,
-                        language: navigator.language,
-                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                    })
-                });
-            } catch (err) {
-                // Still allow download even if tracking fails
-            }
-
-            document.getElementById('downloadGate').classList.add('hidden');
-            document.getElementById('downloadSuccess').classList.remove('hidden');
-        });
-    </script>
-
-
-<section class="bg-slate-900 text-white py-20 px-6">
-    <div class="max-w-4xl mx-auto">
-        <div class="md:flex items-center gap-12">
-            <div class="md:w-1/2 mb-10 md:mb-0">
-                <h2 class="text-3xl font-bold mb-6">About Andy Knox</h2>
-                <p class="text-slate-300 mb-4">18 years in enterprise SaaS sales, RevOps, and GTM strategy + 3 Years as a web app developer and now and AI Developer. I've scaled companies from $500K to $20M, led four successful acquisitions with two exits as owner, and built sales teams from the ground up.</p>
-                <p class="text-slate-300 mb-6">Today I help SaaS companies fix what's broken in their revenue engine — using AI, automation, and the same Playbooks that closed $1.3M deals and hit 120% of target.</p>
-                <div class="flex flex-wrap gap-3 mb-8">
-                    <span class="bg-slate-800 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-full">Salesforce</span>
-                    <span class="bg-slate-800 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-full">HubSpot</span>
-                    <span class="bg-slate-800 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-full">Outreach</span>
-                    <span class="bg-slate-800 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-full">AI / Automation</span>
-                    <span class="bg-slate-800 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-full">M&amp;A</span>
-                    <span class="bg-slate-800 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-full">SEO &amp; PPC</span>
-                </div>
-                <div class="flex items-center gap-4 flex-wrap">
-                    <a href="https://www.linkedin.com/in/andy-knox-176a52a/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-[#0A66C2] hover:bg-[#004182] text-white px-5 py-2.5 rounded-full transition font-semibold">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        Connect on LinkedIn
-                    </a>
-                    <a href="/ANDY_KNOX_AI-AP2026-GEN.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-5 py-2.5 rounded-full transition font-semibold">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                        Resume
-                    </a>
-                    <a href="mailto:andyknox@saasguidesolutions.com" class="text-slate-400 hover:text-blue-400 transition text-sm">andyknox@saasguidesolutions.com</a>
-                </div>
-            </div>
-            <div class="md:w-1/2">
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-slate-800 border border-slate-700 rounded-lg p-5 text-center">
-                        <p class="text-2xl font-extrabold text-blue-400">15+</p>
-                        <p class="text-xs text-slate-400 mt-1">Years Enterprise SaaS</p>
-                    </div>
-                    <div class="bg-slate-800 border border-slate-700 rounded-lg p-5 text-center">
-                        <p class="text-2xl font-extrabold text-blue-400">10x</p>
-                        <p class="text-xs text-slate-400 mt-1">Revenue Growth</p>
-                    </div>
-                    <div class="bg-slate-800 border border-slate-700 rounded-lg p-5 text-center">
-                        <p class="text-2xl font-extrabold text-blue-400">4</p>
-                        <p class="text-xs text-slate-400 mt-1">Acquisitions Led + 2 Exits</p>
-                    </div>
-                    <div class="bg-slate-800 border border-slate-700 rounded-lg p-5 text-center">
-                        <p class="text-2xl font-extrabold text-blue-400">$25M</p>
-                        <p class="text-xs text-slate-400 mt-1">Total ARR Closed</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </section>
-    <footer class="py-10 text-center text-slate-400 text-sm">
-        <a href="/book.html" class="text-blue-500 hover:text-blue-600 font-medium transition">Book a Call</a>
-        <span class="mx-2">|</span>
-        <a href="/ANDY_KNOX_AI-AP2026-GEN.pdf" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-600 font-medium transition">Resume</a>
-        <span class="mx-2">|</span>
-        <a href="/privacy.html" class="text-blue-500 hover:text-blue-600 font-medium transition">Privacy</a>
-        <span class="mx-2">|</span>
-        <a href="/terms.html" class="text-blue-500 hover:text-blue-600 font-medium transition">Terms</a>
-        <span class="mx-2">|</span>
-        &copy; 2026 SaaS Guide Solutions. All rights reserved.
-    </footer>
 
-</body>
-</html>
+<!-- WAVE DOWN into stat strip -->
+<div class="wave-divider" style="background:var(--bg)">
+  <svg viewBox="0 0 1440 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C240,56 480,56 720,28 C960,0 1200,0 1440,42 L1440,56 L0,56 Z" fill="#0e1f34"/>
+  </svg>
+</div>
+
+<!-- STAT STRIP -->
+<section class="stat-strip">
+  <div class="wrapper">
+    <div class="stat-strip-inner">
+      <div class="stat-item">
+        <div class="stat-num"><span class="stat-num-accent">20</span>×</div>
+        <div class="stat-label">Revenue Scaled<br>$1M → $20M ARR</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span class="stat-num-accent">30</span> day</div>
+        <div class="stat-label">Guarantee to<br>see revenue results</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">$<span class="stat-num-accent">25</span>M</div>
+        <div class="stat-label">Personal ARR while<br>managing team</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span class="stat-num-accent">4</span></div>
+        <div class="stat-label">Acquisitions led<br>+ 2 exits as owner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE UP out of stat strip -->
+<div class="wave-divider" style="background:var(--bg2)">
+  <svg viewBox="0 0 1440 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,56 C240,0 480,0 720,28 C960,56 1200,56 1440,14 L1440,0 L0,0 Z" fill="#0e1f34"/>
+  </svg>
+</div>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="wrapper">
+    <div class="section-head">
+      <p class="eyebrow">What we do</p>
+      <h2>Three levers.<br>One revenue engine.</h2>
+      <p>Most GTM problems aren't strategy problems — they're execution problems. We fix the system, not just the plan.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="20" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
+          <path d="M14 22 L22 14 L30 22 L22 30 Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="22" cy="22" r="3" fill="currentColor"/>
+        </svg>
+        <h3>RevOps Architecture</h3>
+        <p>End-to-end CRM design that eliminates data silos and manual entry. Salesforce, HubSpot, or the stack you already have.</p>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 32 L16 20 L24 26 L32 10 L38 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="38" cy="18" r="2.5" fill="currentColor"/>
+        </svg>
+        <h3>GTM Execution</h3>
+        <p>Practical playbooks for lead routing, scoring, and sales enablement. Strategy that ships, not slides.</p>
+        <a href="/speedysheets.html" class="pillar-link">Try SpeedySheets →</a>
+      </div>
+      <div class="pillar">
+        <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="26" width="6" height="10" stroke="currentColor" stroke-width="1.5" rx="1"/>
+          <rect x="19" y="18" width="6" height="18" stroke="currentColor" stroke-width="1.5" rx="1"/>
+          <rect x="30" y="10" width="6" height="26" stroke="currentColor" stroke-width="1.5" rx="1"/>
+          <path d="M11 20 L22 14 L33 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3 2"/>
+        </svg>
+        <h3>Clean Reporting</h3>
+        <p>Real-time dashboards that show exactly where your pipeline is stalling — before the board meeting, not during it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section class="framework">
+  <div class="wrapper">
+    <div class="section-head">
+      <p class="eyebrow">The SGS Framework</p>
+      <h2>How we close the gap between<br>strategy and revenue.</h2>
+      <p>Four stages, executed in sequence. Each builds on the last.</p>
+    </div>
+    <div class="framework-stages">
+      <div class="stage stage-active">
+        <div class="stage-label">Stage 01</div>
+        <h4>Audit</h4>
+        <ul>
+          <li>CRM health check</li>
+          <li>Pipeline leak analysis</li>
+          <li>Tech stack review</li>
+          <li>ICP validation</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <div class="stage-label">Stage 02</div>
+        <h4>Design</h4>
+        <ul>
+          <li>RevOps architecture</li>
+          <li>Scoring models</li>
+          <li>Routing rules</li>
+          <li>Sales playbook</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <div class="stage-label">Stage 03</div>
+        <h4>Execute</h4>
+        <ul>
+          <li>CRM build &amp; migration</li>
+          <li>Automation sequences</li>
+          <li>Enablement content</li>
+          <li>Outbound engine</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <div class="stage-label">Stage 04</div>
+        <h4>Scale</h4>
+        <ul>
+          <li>Dashboard reporting</li>
+          <li>QBR frameworks</li>
+          <li>Hiring playbooks</li>
+          <li>Partner channels</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE into case studies -->
+<div class="wave-divider" style="background:var(--bg2)">
+  <svg viewBox="0 0 1440 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,56 C360,10 720,10 1080,38 C1260,52 1380,20 1440,0 L1440,56 L0,56 Z" fill="#091525"/>
+  </svg>
+</div>
+
+<!-- CASE STUDIES -->
+<section class="cases" id="cases">
+  <div class="wrapper">
+    <div class="section-head">
+      <p class="eyebrow">Case Studies</p>
+      <h2>Proven results.<br>Not theory — execution.</h2>
+    </div>
+
+    <div class="case-card">
+      <div class="case-body">
+        <span class="case-tag">Transportation SaaS</span>
+        <h3>Degama Systems</h3>
+        <p class="case-sub">Legacy on-premise → SaaS transformation &amp; two acquisitions</p>
+        <div class="case-results">
+          <div class="case-result-row"><span><strong>Scale &amp; Acquisition:</strong> Grew revenue 10× ($500K to $5M ARR), transitioned legacy platforms to SaaS, and positioned the company for acquisition.</span></div>
+          <div class="case-result-row"><span><strong>M&amp;A Leadership:</strong> Co-led a 25-person cross-functional team through two successful acquisition processes.</span></div>
+          <div class="case-result-row"><span><strong>Sales Ops &amp; Lead Gen:</strong> Rebuilt outbound/inbound, implemented CRM automation, and drove lead generation via SEO, AI blogging, and PPC.</span></div>
+        </div>
+      </div>
+      <div class="case-metrics">
+        <div class="case-metric">
+          <div class="case-metric-num">$5M</div>
+          <div class="case-metric-label">ARR at Exit</div>
+        </div>
+        <div class="case-sep"></div>
+        <div class="case-metric">
+          <div class="case-metric-num">2×</div>
+          <div class="case-metric-label">Acquisitions</div>
+        </div>
+        <div class="case-sep"></div>
+        <div class="case-metric">
+          <div class="case-metric-num">$1.3M</div>
+          <div class="case-metric-label">Record Deal</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-body">
+        <span class="case-tag">Enterprise SaaS</span>
+        <h3>Global Mining &amp; Construction</h3>
+        <p class="case-sub">Sales restructuring &amp; global expansion across four continents</p>
+        <div class="case-results">
+          <div class="case-result-row"><span><strong>Team Restructuring:</strong> Hired 6 reps and sales ops, built a systematic team with deep industry experience.</span></div>
+          <div class="case-result-row"><span><strong>Partnership Growth:</strong> Secured major resellers including Hexagon and Sumitomo while managing legacy partner exits.</span></div>
+          <div class="case-result-row"><span><strong>Direct Revenue:</strong> Personally generated $25M ARR while simultaneously managing the broader sales organization.</span></div>
+        </div>
+      </div>
+      <div class="case-metrics">
+        <div class="case-metric">
+          <div class="case-metric-num">$25M</div>
+          <div class="case-metric-label">Personal Revenue</div>
+        </div>
+        <div class="case-sep"></div>
+        <div class="case-metric">
+          <div class="case-metric-num">120%</div>
+          <div class="case-metric-label">Sales Runrate</div>
+        </div>
+        <div class="case-sep"></div>
+        <div class="case-metric">
+          <div class="case-metric-num">100%</div>
+          <div class="case-metric-label">Partner Goals</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="wrapper">
+    <div class="testimonial-inner">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">SaaS Guide made a huge contribution to Degama, by <strong>transforming our strategy to one based on inbound lead generation</strong> via AI, SEO, social media, and other techniques. They spearheaded the transformation from traditional on-premise to SaaS, and was very successful managing prospects from inception to close. I highly recommend the SGS Team.</p>
+      <div class="quote-attr">
+        <div class="quote-attr-line"></div>
+        <div>
+          <div class="quote-attr-name">Tom Greenwood</div>
+          <div class="quote-attr-title">President &amp; Founder, Degama Systems</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE into CTA -->
+<div class="wave-divider" style="background:var(--bg)">
+  <svg viewBox="0 0 1440 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C480,56 960,56 1440,20 L1440,56 L0,56 Z" fill="#0e1f34"/>
+  </svg>
+</div>
+
+<!-- AUDIT CTA -->
+<section class="audit-section" id="audit">
+  <svg class="audit-mountains" viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,320 200,120 380,220 560,60 740,200 920,100 1120,240 1300,80 1440,180 1440,320" fill="#1a3356"/>
+    <polygon points="0,320 240,160 440,260 640,100 840,230 1040,130 1240,270 1440,120 1440,320" fill="#0e1f34"/>
+  </svg>
+  <div class="wrapper">
+    <div class="audit-inner">
+      <p class="eyebrow">Free GTM Audit — 30-Day Guarantee</p>
+      <h2>Find out where your<br>pipeline is <em>leaking.</em></h2>
+      <p>A 45-minute audit that maps your GTM motion, identifies the top three revenue blockers, and gives you a prioritized fix list — no charge.</p>
+      <div class="audit-checklist">
+        <div class="audit-check">CRM health &amp; data quality review</div>
+        <div class="audit-check">Pipeline coverage &amp; stage conversion analysis</div>
+        <div class="audit-check">ICP &amp; ideal segment validation</div>
+        <div class="audit-check">Prioritized action plan, delivered same week</div>
+      </div>
+      <a href="/book.html" class="btn-primary" style="font-size:14px;padding:16px 36px;">Book Your Free Audit →</a>
+      <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--border);text-align:center;">
+        <p style="font-size:14px;color:var(--fg2);margin-bottom:4px;">Not ready for a call?</p>
+        <p style="font-size:12px;color:var(--fg3);margin-bottom:16px;">Download our SaaS Ops Checklist — covers sales, marketing, lead gen, CS, churn KPIs, and tech stack.</p>
+        <div id="downloadGate">
+          <form id="downloadForm" style="display:flex;gap:8px;max-width:380px;margin:0 auto;" novalidate>
+            <div style="flex:1;">
+              <input type="email" id="dlEmail" placeholder="Your email address" required
+                     style="width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;color:var(--fg);font-size:14px;outline:none;box-sizing:border-box;">
+              <p id="dlEmailError" style="color:#ff453a;font-size:12px;margin-top:4px;display:none;"></p>
+            </div>
+            <button type="submit"
+                    style="background:var(--fg);color:var(--bg);padding:10px 18px;border-radius:8px;font-weight:700;font-size:13px;border:none;cursor:pointer;white-space:nowrap;">Download</button>
+          </form>
+        </div>
+        <div id="downloadSuccess" style="display:none;">
+          <p style="color:#34c759;font-weight:600;font-size:14px;margin-bottom:8px;">Your download is ready!</p>
+          <a href="/gtm-audit-discovery.html" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-block;">Open SaaS Ops Checklist</a>
+          <p style="color:var(--fg3);font-size:12px;margin-top:8px;">Use Print / Save PDF on the checklist page</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section style="padding:80px 0;background:var(--bg2);">
+  <div class="wrapper">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2 style="font-size:clamp(28px,4vw,40px);margin-bottom:20px;">Andy Knox</h2>
+        <p style="color:var(--fg2);margin-bottom:16px;">18 years in enterprise SaaS sales, RevOps, and GTM strategy + 3 years as a web app developer and AI developer. I've scaled companies from $500K to $20M, led four successful acquisitions with two exits as owner, and built sales teams from the ground up.</p>
+        <p style="color:var(--fg2);margin-bottom:24px;">Today I help SaaS companies fix what's broken in their revenue engine — using AI, automation, and the same playbooks that closed $1.3M deals and hit 120% of target.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;">
+          <span style="background:var(--bg3);border:1px solid var(--border2);color:var(--fg2);font-size:12px;padding:5px 12px;border-radius:20px;">Salesforce</span>
+          <span style="background:var(--bg3);border:1px solid var(--border2);color:var(--fg2);font-size:12px;padding:5px 12px;border-radius:20px;">HubSpot</span>
+          <span style="background:var(--bg3);border:1px solid var(--border2);color:var(--fg2);font-size:12px;padding:5px 12px;border-radius:20px;">Outreach</span>
+          <span style="background:var(--bg3);border:1px solid var(--border2);color:var(--fg2);font-size:12px;padding:5px 12px;border-radius:20px;">AI / Automation</span>
+          <span style="background:var(--bg3);border:1px solid var(--border2);color:var(--fg2);font-size:12px;padding:5px 12px;border-radius:20px;">M&amp;A</span>
+          <span style="background:var(--bg3);border:1px solid var(--border2);color:var(--fg2);font-size:12px;padding:5px 12px;border-radius:20px;">SEO &amp; PPC</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;">
+          <a href="https://www.linkedin.com/in/andy-knox-176a52a/" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex;align-items:center;gap:10px;background:#0A66C2;color:white;padding:10px 20px;border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Connect on LinkedIn
+          </a>
+          <a href="/ANDY_KNOX_AI-AP2026-GEN.pdf" target="_blank" rel="noopener noreferrer"
+             style="display:inline-flex;align-items:center;gap:8px;background:var(--bg3);color:var(--fg);padding:10px 20px;border-radius:999px;font-weight:700;font-size:14px;border:1px solid var(--border2);text-decoration:none;">
+            Resume
+          </a>
+          <a href="mailto:andyknox@saasguidesolutions.com" style="color:var(--fg3);font-size:13px;text-decoration:none;">andyknox@saasguidesolutions.com</a>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center;">
+          <p style="font-size:28px;font-weight:900;color:var(--accent2);font-family:'Raleway',sans-serif;">15+</p>
+          <p style="font-size:12px;color:var(--fg3);margin-top:4px;">Years Enterprise SaaS</p>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center;">
+          <p style="font-size:28px;font-weight:900;color:var(--accent2);font-family:'Raleway',sans-serif;">10×</p>
+          <p style="font-size:12px;color:var(--fg3);margin-top:4px;">Revenue Growth</p>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center;">
+          <p style="font-size:28px;font-weight:900;color:var(--accent2);font-family:'Raleway',sans-serif;">4</p>
+          <p style="font-size:12px;color:var(--fg3);margin-top:4px;">Acquisitions Led + 2 Exits</p>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center;">
+          <p style="font-size:28px;font-weight:900;color:var(--accent2);font-family:'Raleway',sans-serif;">$25M</p>
+          <p style="font-size:12px;color:var(--fg3);margin-top:4px;">Total ARR Closed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.getElementById('downloadForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const emailEl = document.getElementById('dlEmail');
+    const errorEl = document.getElementById('dlEmailError');
+    const email = emailEl.value.trim();
+    errorEl.style.display = 'none';
+    emailEl.style.borderColor = '';
+    if (!email) { errorEl.textContent = 'Email is required.'; errorEl.style.display = 'block'; emailEl.style.borderColor = '#ff453a'; return; }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) { errorEl.textContent = 'Please enter a valid email address.'; errorEl.style.display = 'block'; emailEl.style.borderColor = '#ff453a'; return; }
+    const btn = this.querySelector('button');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    try {
+        await fetch('/submit-download', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, document: 'SaaS Ops Checklist', referrer: document.referrer || 'direct', page: window.location.href }) });
+    } catch (err) {}
+    document.getElementById('downloadGate').style.display = 'none';
+    document.getElementById('downloadSuccess').style.display = 'block';
+});
+</script>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrapper footer-inner">
+    <a href="/" class="footer-logo">
+      <span class="logo-circle-sm"><img src="/logo.png" alt="SGS logo" width="24" height="24"/></span>
+      SaaS Guide Solutions
+    </a>
+    <div class="footer-links">
+      <a href="/services.html">Services</a>
+      <a href="/speedysheets.html">SpeedySheets</a>
+      <a href="/book.html">Book a Call</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </div>
+    <span class="footer-copy">© 2026 SaaS Guide Solutions</span>
+  </div>
+</footer>
