@@ -1,5 +1,5 @@
 <title>SaaS Guide Solutions — Dark</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Source+Sans+3:wght@300;400;500;600&display=swap">
 
 <style>
@@ -111,7 +111,7 @@ nav {
 .nav-cta:hover { background: var(--accent) !important; color: var(--bg) !important; }
 
 @media (max-width: 700px) {
-  .nav-links { display: none; }
+  .nav-links { display: none !important; }
   .nav-mobile-cta { display: flex !important; }
 }
 .nav-mobile-cta {
@@ -551,6 +551,23 @@ footer { border-top: 1px solid var(--border); padding-block: 40px; }
 .tag-crit { background: rgba(255,69,58,.12);  color: #ff453a; }
 .audit-footer { text-align: center; }
 .audit-footer-note { font-size: 12px; color: var(--fg3); margin-top: 8px; }
+
+/* About section */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.stats-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* ── GLOBAL MOBILE ── */
+@media (max-width: 600px) {
+  .wrapper { padding: 0 16px; }
+  .hero { padding-block: 56px 48px; }
+  .hero h1 { font-size: clamp(32px, 9vw, 48px); }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .case-grid { grid-template-columns: 1fr !important; }
+  section[style*="padding:80px"] { padding: 48px 0 !important; }
+}
+@media (max-width: 720px) {
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+}
 </style>
 
 <!-- NAV -->
@@ -922,7 +939,7 @@ footer { border-top: 1px solid var(--border); padding-block: 40px; }
 <!-- ABOUT -->
 <section style="padding:80px 0;background:var(--bg2);">
   <div class="wrapper">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+    <div class="about-grid">
       <div>
         <p class="eyebrow">About</p>
         <h2 style="font-size:clamp(28px,4vw,40px);margin-bottom:20px;">Andy Knox</h2>
@@ -949,7 +966,7 @@ footer { border-top: 1px solid var(--border); padding-block: 40px; }
           <a href="mailto:andyknox@saasguidesolutions.com" style="color:var(--fg3);font-size:13px;text-decoration:none;">andyknox@saasguidesolutions.com</a>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div class="stats-grid">
         <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center;">
           <p style="font-size:28px;font-weight:900;color:var(--accent2);font-family:'Raleway',sans-serif;">15+</p>
           <p style="font-size:12px;color:var(--fg3);margin-top:4px;">Years Enterprise SaaS</p>
